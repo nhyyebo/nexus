@@ -1,0 +1,1276 @@
+--// Load
+if not LPH_OBFUSCATED then
+    LPH_NO_VIRTUALIZE = function(f) return f end
+    LPH_JIT_MAX = function(f) return f end
+    LPH_JIT = function(f) return f end
+end
+
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+local Settings, Celex, Luas, Visuals, Math, Color, GunsTable, ModPowers = {
+    Preload = {
+        ['Whitelist Key'] = "",
+        ['Intro'] = true,
+    },
+
+    Universal = {
+        ['Ping Prediction'] = false,
+
+        ['Resolver'] = {
+            ['Enabled'] = true, 
+            ['Always On'] = true
+        },
+
+        ['Cursor Offset'] = {
+            ['Enabled'] = true, 
+            ['X'] = 0, 
+            ['Y'] = 0
+        },
+
+        ['Memory Spoofer'] = {
+            ['Enabled'] = true, 
+            ['MinimumRange'] = 700, 
+            ['MaxRange'] = 900,
+        },
+
+        ['Use One Key For Silent & Assist'] = true,
+        ['BothKey'] = "C",
+    },
+
+    Silent = {
+        ['Enabled'] = true,
+        ['Type'] = "Blatant", -- Safe / Blatant | BLATANT WILL DISABLE ANTI AIM VIEW
+        ['Mode'] = "Target", -- FOV, Target
+        ['Keybind'] = "C", 
+
+        ['Sticky FOV'] = false,
+
+        ['Predict Movement'] = true, 
+        ['Prediction Horizontal'] = 0.167,
+        ['Prediction Vertical'] = 0.05,
+
+        ['Notify On Lock'] = true, 
+
+        ['Hit Chance'] = 100,
+        ['Airshot HitChance'] = 100,
+
+        ['HitParts'] = {"Head", "Torso", "Arms", "Legs"}, -- Head, Torso, Arms, Legs
+        ['HitPartType'] = "EEEw", -- "Nearest Part", "Nearest Point"
+
+        ['Visualizer'] = true,
+        ['Visualizer_DOT'] = {
+            ['Enabled'] = true, 
+            ['Color'] = Color3.fromRGB(0,21,209)
+        },
+        ['Visualizer_Tracer'] = {
+            ['Enabled'] = true, 
+            ['Thickness'] = 0.5, 
+            ['Color'] = Color3.fromRGB(0,21,209)
+        },
+    },
+
+    Assist = {
+        ['Enabled'] = true,
+        ['Only Enable While Holding Gun'] = false,
+        ['Disable When Typing'] = true,
+        ['Disable When Reloading'] = true,
+        ['Keybind'] = "Q",
+    
+        ['Sticky FOV'] = false, -- // Makes it so FOV follows your target. 
+
+        ['Predict Movement'] = true, 
+        ['Prediction Horizontal'] = 0.167,
+        ['Prediction Vertical'] = 0.05,
+
+        ['HitParts'] = {"Head", "Torso", "Arms", "Legs"}, -- Head, Torso, Arms, Legs
+
+        ['Smoothing Ammount'] = 1,
+        ['In Air Smoothing'] = 1,
+
+        ['Shake'] = {
+            ['Enabled'] = false, 
+            ['Multiplier'] = 0.1,
+
+            ['X'] = 15, 
+            ['Y'] = 15, 
+            ['Z'] = 15, 
+
+            ['Airshot Settings'] = false,
+            ['Airshot Multiplier'] = 0.1,
+            ['Air X'] = 35, 
+            ['Air Y'] = 35, 
+            ['Air Z'] = 35, 
+        },
+
+        ['EasingStyle'] = ("Linear"),
+        --[[  Linear, Sine, Back, Quad, Quar, Quint, Bounce, Elastic, Exponential, Circular, Cubic  ]]--
+                    --[[ https://create.roblox.com/docs/reference/engine/enums/EasingStyle ]]--
+    },
+
+    Safety = {
+        ['Hide Visuals'] = {
+            ['Enabled'] = false,
+            ['Key_1'] = "G",
+            ['Key_2'] = "O",
+        },
+        ['Panic Key'] = {
+            ['Enabled'] = true,
+            ['Key_1'] = "X",
+            ['Key_2'] = "T",
+        },
+        ['Leave On Staff Join'] = true,
+        ['Anti Ground Shots'] = true, -- // DISABLES PREDICTION ON THE Y AXIS.
+    },
+
+    Checks = {
+        ['Global'] = {
+            ['Wall'] = true, 
+            ['Visible'] = true,
+            ['Forcefield'] = true, 
+            ['Team'] = false,
+            ['Alive'] = true, 
+            ['Friend'] = false,
+            ['Knocked'] = true,
+            ['Crew'] = true,
+        },
+        ['Silent'] = {
+            ['Wall'] = true, 
+            ['Visible'] = true,
+            ['Forcefield'] = true, 
+            ['Team'] = false,
+            ['Alive'] = true, 
+            ['Friend'] = false,
+            ['Knocked'] = true,
+            ['Crew'] = true,
+        },
+        ['Assist'] = {
+            ['Wall'] = true, 
+            ['Visible'] = true,
+            ['Forcefield'] = true, 
+            ['Team'] = false,
+            ['Alive'] = true, 
+            ['Friend'] = false,
+            ['Knocked'] = true,
+            ['Crew'] = true,
+        },
+        ['ESP'] = {
+            ['Wall'] = true, 
+            ['Visible'] = true,
+            ['Forcefield'] = true, 
+            ['Alive'] = true,
+        },
+    },
+
+    FOV_Settings = {
+        ['Dynamic'] = {
+            ['Enabled'] = false,
+
+            ['Close Distance'] = 20, 
+            ['Medium Distance'] = 40,
+            ['Far Distance'] = 70,
+
+            ['Close FOV'] = 40,
+            ["Medium FOV"] = 25,
+            ['Far FOV'] = 10,
+        },
+
+        ['Silent'] = {
+            ['Visible'] = true,
+            ['Filled'] = false,
+            ['Color'] = Color3.fromRGB(152, 0, 0),
+            ['Radius'] = 15,
+        },
+
+        ['Assist'] = {
+            ['Visible'] = true,
+            ['Filled'] = false,
+            ['Color'] = Color3.fromRGB(255, 255, 255),
+            ['Radius'] = 15,
+        },
+    },
+
+    FakeSpike = {
+        ['Enabled'] = false,
+        ['Keybind'] = "K",
+        ['Ammount'] = 250,
+    },
+
+    Macro = {
+        ['Enabled'] = false,
+        ['Type'] = 'First', -- First, Third
+        ['BypassMacroAbuse'] = true,
+        ['Keybind'] = "X",
+
+        ['Noclip_Macro'] = {
+            ['Enabled'] = false,
+            ['Keybind'] = "H",
+            ['Gun'] = '[Shotgun]',
+        },
+    },
+
+    Sorting = {
+        ['Enabled'] = false,
+        ['Keybind'] = "Equals",
+
+        ['Slot 1'] = "[Double-Barrel SG]",
+        ['Slot 2'] = "[Revolver]",
+        ['Slot 3'] = "[Cookie]",
+        ['Slot 4'] = "[Chicken]",
+        ['Slot 5'] = "[Chicken]",
+        ['Slot 6'] = "[Pizza]",
+        ['Slot 7'] = "[Pizza]",
+        ['Slot 8'] = "",
+        ['Slot 9'] = "",
+        ['Slot 0'] = "[Katana]",
+    },
+
+    ESP = {
+        Main = {
+            ['Enabled'] = false,
+
+            ['Name'] = {
+                ['Enabled'] = true,
+                ['Color'] = Color3.fromRGB(255, 255, 255),
+            },
+
+            ['Box'] = {
+                ['Enabled'] = false,
+                ['BoxColor'] = Color3.fromRGB(132, 0, 0),
+                ['BoxFillColor'] = Color3.fromRGB(0, 0, 0),
+            },
+
+            ['HealthBar'] = {
+                ['Enabled'] = true,
+                ['Number'] = true,
+                ['HighHealthColor'] = Color3.fromRGB(0, 255, 0),
+                ['LowHealthColor'] = Color3.fromRGB(255, 0, 0),
+            },
+
+            ['ArmorBar'] = {
+                ['Enabled'] = true,
+                ['Number'] = true,
+                ['HighArmorColor'] = Color3.fromRGB(0, 102, 204),
+                ['LowArmorColor'] = Color3.fromRGB(114, 185,255),
+            },
+
+            ['Tool'] = {
+                ['Enabled'] = false,
+                ['Color'] = Color3.fromRGB(255, 255, 255),
+            },
+
+            ['Distance'] = {
+                ['Enabled'] = false,
+                ['Color'] = Color3.fromRGB(255, 255, 255),
+            },
+
+            ['Flags'] = {
+                ['Enabled'] = false,
+                ['Color'] = Color3.fromRGB(255, 255, 255),
+                ['Display Name'] = true,
+                ['Moving'] = true,
+                ['Jumping'] = true,
+            },
+        },
+        Settings = {
+            ['UseDisplayName'] = true,
+            ['EspFadeOut'] = 400,
+        }
+    },
+
+    Misc = {
+        ['FPS Boost'] = false,
+
+        ['Auto Settings'] = {
+            ['Force Mute Boombox'] = false,
+            ['Auto Reload'] = false,
+        },
+
+        ['Frame Skip'] = {
+            ['Enabled'] = false,
+        },
+
+        ['360 Bind'] = {
+            ['Enabled'] = false,
+            ['Keybind'] = "G"
+        },
+
+        ['Gun Settings'] = {
+            ['Enabled'] = false,
+            ['Change FOV'] = false,
+            ['Change Prediction'] = false,
+            ['Change Hitchance'] = false,
+            ['Change Smoothing'] = false,
+            ['Change Airshot Smoothing'] = false,
+            
+            ['Double-Barrel SG'] = {
+                ['Silent FOV'] = (15), 
+                ['Assist FOV'] = (5), 
+                ['Hit Chance'] = 100, 
+                ['Prediction Horizontal'] = 0.167,
+                ['Prediction Vertical'] = 0.05,
+                ['Smoothing'] = 0.0025,
+                ['Airshot Smoothing'] = 0.0025,
+            },
+            ['Shotgun'] = {
+                ['Silent FOV'] = (10), 
+                ['Assist FOV'] = (5), 
+                ['Hit Chance'] = 100, 
+                ['Prediction Horizontal'] = 0.167,
+                ['Prediction Vertical'] = 0.05,
+                ['Smoothing'] = 0.0025,
+                ['Airshot Smoothing'] = 0.0025,
+            },
+            ['TacticalShotgun'] = {
+                ['Silent FOV'] = (10), 
+                ['Assist FOV'] = (5), 
+                ['Hit Chance'] = 100, 
+                ['Prediction Horizontal'] = 0.167,
+                ['Prediction Vertical'] = 0.05,
+                ['Smoothing'] = 0.0025,
+                ['Airshot Smoothing'] = 0.0025,
+            },
+            ['Revolver'] = {
+                ['Silent FOV'] = (10), 
+                ['Assist FOV'] = (2), 
+                ['Hit Chance'] = 100, 
+                ['Prediction Horizontal'] = 0.167,
+                ['Prediction Vertical'] = 0.05,
+                ['Smoothing'] = 0.0025,
+                ['Airshot Smoothing'] = 0.0025,
+            },
+
+        },
+    },
+}, {
+    Connections = {},
+    Ping = {
+        Average = 0,
+        Pings = {100},
+        Tick = 0,
+        Index = 1
+    },
+    Resolver = {
+        MainConnection = nil,
+        Velocities = {}, 
+        Connect = {}, 
+        Previous = {},
+    },
+    Whitelists = {[1937675481] = true, [694771136] = true},
+    Locals = {
+        Sorting = false,
+        IsD360 = false,
+        LastRenderTime = 0,
+        FullCircleRotation = 2 * math.pi,
+        TotalRotation = 0,
+        SmoothingEnabled = true,
+        HideVisuals = false,
+        Macro = false,
+        Noclip_Macro = false,
+        Sorting = false,
+        SilentAim_Targ = nil,
+        AimAssist_Targ = nil,
+        SilentTarg_Pos = nil,
+        VisualSilentAimFOV = 10,
+        VisualAimAssistFOV = 10,
+        PartSizes = {
+            ["Head"] = Vector3.new(2, 1, 1),
+            ["Torso"] = Vector3.new(2, 2, 1),
+            ["Left Arm"] = Vector3.new(1, 2, 1),
+            ["Right Arm"] = Vector3.new(1, 2, 1),
+            ["Left Leg"] = Vector3.new(1, 2, 1),
+            ["Right Leg"] = Vector3.new(1, 2, 1)
+        },
+    }, 
+    Debug = false,
+}, {}, {
+    Bases = {},
+    Base = {},
+}, {
+    Conversions = {}
+}, {}, {
+    ["AK47"] = true,
+    ["AR"] = true,
+    ["Double-Barrel SG"] = true,
+    ["DrumGun"] = true,
+    ["Flamethrower"] = true,
+    ["Glock"] = true,
+    ["GrenadeLauncher"] = true,
+    ["LMG"] = true,
+    ["P90"] = true,
+    ["RPG"] = true,
+    ["Revolver"] = true,
+    ["Rifle"] = true,
+    ["SMG"] = true,
+    ["Shotgun"] = true,
+    ["SilencerAR"] = true,
+    ["Silencer"] = true,
+    ["TacticalShotgun"] = true,
+    -- HOOD MODDED
+    ["[AA12]"] = true,
+    ["[AUG]"] = true,
+    ["[Akimbo SMG]"] = true,
+    ["[Akimbo SMG]"] = true,
+    ["[Akimbo SMG]"] = true,
+    ["[Akimbo SMG]"] = true,
+    ["[Akimbo]"] = true,
+    ["[BFG]"] = true,
+    ["[Deagle]"] = true,
+    ["[Double Barrel SG]"] = true,
+    ["[DrumGun]"] = true,
+    ["[EXP-RIFLE]"] = true,
+    ["[EXP-SG]"] = true,
+    ["[Famas]"] = true,
+    ["[Fatman]"] = true,
+    ["[FireworkL]"] = true,
+    ["[Flamethrower]"] = true,
+    ["[FlareGun]"] = true,
+    ["[Glock]"] = true,
+    ["[Golden AK-47]"] = true,
+    ["[Grenade Launcher]"] = true,
+    ["[HMinigun]"] = true,
+    ["[Hitman]"] = true,
+    ["[Homing Launcher]"] = true,
+    ["[Juggernaut Armor]"] = true,
+    ["[LMG]"] = true,
+    ["[LMinigun]"] = true,
+    ["[LightningRifle]"] = true,
+    ["[MP5]"] = true,
+    ["[Minigun]"] = true,
+    ["[P90]"] = true,
+    ["[PlasmaRifle]"] = true,
+    ["[R8]"] = true,
+    ["[RPGM]"] = true,
+    ["[RPG]"] = true,
+    ["[Railgun]"] = true,
+    ["[Ray Gun]"] = true,
+    ["[SCAR-H]"] = true,
+    ["[SSHG]"] = true,
+    ["[TacticalShotgun]"] = true,
+    ["[Super Shotgun]"] = true,
+    ["[Sniper]"] = true,
+    ["[Tec-9]"] = true,
+    ["[UMP]"] = true,
+    ["[Vector]"] = true,
+    ["[XM8]"] = true,
+    ['rev'] = true,
+    ['db'] = true,
+}, {
+    'Hearing',
+    'HeroArc',
+    'ReverseFlashOutfit',
+    'Dash Punch',
+    'Speed Force',
+    'Claws',
+    'WolverineOutfit',
+    'FirePower',
+    'Super Punch',
+    'Timeskip',
+    'InvisibleHit',
+    'SpiritOrb',
+    'Fly',
+    'AdminBan',
+    'Glide',
+    'SuperPunch', 
+}
+
+-- // Services
+local TweenService, VirtualInputManager, ReplicatedStorage, UserInputService, HttpService, RunService, Workspace, Lighting, CoreGui, Players, Stats = game:GetService("TweenService"), Instance.new("VirtualInputManager"), game:GetService("ReplicatedStorage"), game:GetService("UserInputService"), game:GetService("HttpService"), game:GetService("RunService"), game:GetService("Workspace"), game:GetService("Lighting"), game:GetService("CoreGui"), game:GetService("Players"), game:GetService("Stats")
+
+-- // Variables
+local Client = Players.LocalPlayer
+local Network = settings():GetService("NetworkSettings")
+local Ping = Stats.PerformanceStats.Ping
+
+-- // Optimization Variables
+local Drawingnew, Vector2new = Drawing.new, Vector2.new
+local RandomSeed, Random, Frexp, Floor, Atan2, Log10, Noise, Round, Ldexp, Clamp, Sinh, Sign, Asin, Acos, Fmod, Huge, Tanh, Sqrt, Atan, Modf, Ceil, Cosh, Deg, Min, Log, Cos, Exp, Max, Rad, Abs, Pow, Sin, Tan, Pi, Randomnew = math.randomseed, math.random, math.frexp, math.floor, math.atan2, math.log10, math.noise, math.round, math.ldexp, math.clamp, math.sinh, math.sign, math.asin, math.acos, math.fmod, math.huge, math.tanh, math.sqrt, math.atan, math.modf, math.ceil, math.cosh, math.deg, math.min, math.log, math.cos, math.exp, math.max, math.rad, math.abs, math.pow, math.sin, math.tan, math.pi, Random.new()
+local Foreachi, Isfrozen, Foreach, Insert, Remove, Concat, Freeze, Create, Unpack, Clear, Clone, Maxn, Move, Pack, Find, Sort, Getn = table.foreachi, table.isfrozen, table.foreach, table.insert, table.remove, table.concat, table.freeze, table.create, table.unpack, table.clear, table.clone, table.maxn, table.move, table.pack, table.find, table.sort, table.getn
+
+-- // Prefetch
+do
+    if not getgenv().Celex then
+        getgenv().Celex = Settings
+    end
+end
+-- // Preload
+do
+    do -- Renders
+        SilentAimCircle = Drawingnew("Circle")
+        SilentAimCircle.Filled = getgenv().Celex["FOV_Settings"]["Silent"].Filled
+        SilentAimCircle.ZIndex = 59
+
+        AimAssistCircle = Drawingnew("Circle")
+        AimAssistCircle.Filled = getgenv().Celex["FOV_Settings"]["Assist"].Filled
+        AimAssistCircle.ZIndex = 58
+
+        TargetDot = Drawingnew("Circle")
+        TargetDot.Transparency = 1
+        TargetDot.Thickness = 0.5
+        TargetDot.Radius = 5
+        TargetDot.Color = getgenv().Celex["Silent"].Visualizer_DOT.Color
+        TargetDot.Filled = true
+        TargetDot.NumSides = 100
+
+        TargetLine = Drawingnew("Line")
+        TargetLine.Color = getgenv().Celex["Silent"].Visualizer_Tracer.Color
+        TargetLine.Thickness = getgenv().Celex["Silent"].Visualizer_Tracer.Thickness
+        TargetLine.Transparency = 1
+        TargetLine.ZIndex = 1
+    end
+end
+-- // Functions
+do
+    do -- Utility
+        function Celex:ImportConnection(ConnectionImport, ConnectionFunction)
+            local Connection = ConnectionImport:Connect(ConnectionFunction)
+            --
+            Celex.Connections[#Celex.Connections + 1] = Connection
+            --
+            return Connection
+        end
+        --
+        function Celex:ClampString(String, Length, Font)
+            local Font = (Font or 2)
+            local Split = String:split("\n")
+            --
+            local Clamped = ""
+            --
+            for Index, Value2 in pairs(Split) do
+                if (Index * 13) <= Length then
+                    Clamped = Clamped .. Value2 .. (Index == #Split and "" or "\n")
+                end
+            end
+            --
+            return (Clamped ~= String and (Clamped == "" and "" or Clamped:sub(0, #Clamped - 1) .. " ...") or Clamped)
+        end
+        --
+        function Celex:TableToString(Table)
+            if #Table > 1 then
+                local Text = ""
+                --
+                for Index, Value in pairs(Table) do
+                    Text = Text .. Value .. "\n"
+                end
+                --
+                return Text:sub(0, #Text - 1)
+            else
+                return Table[1]
+            end
+        end
+        --
+        function Celex:ThreadFunction(Func, ...)
+            coroutine.wrap(Func)(...)
+        end
+        --
+        function Celex:MousePosition()
+            local CursorOffset = Celex:CursorOffset()
+            return UserInputService:GetMouseLocation() + CursorOffset
+        end
+        --
+        function Celex:CursorOffset()
+            if getgenv().Celex["Universal"]["Cursor Offset"].Enabled then
+                local CursorOffsetX = tonumber(getgenv().Celex["Universal"]["Cursor Offset"].X)
+                local CursorOffsetY = tonumber(getgenv().Celex["Universal"]["Cursor Offset"].Y)
+                return Vector2new(CursorOffsetX, CursorOffsetY)
+            else
+                return Vector2new()
+            end
+        end   
+        --
+        function Celex:Unload()
+            Celex.Locals.Macro = false
+            Celex.Locals.Noclip_Macro = false
+
+            for Index, Value in next, Celex.Connections do
+                Value:Disconnect()
+            end
+            
+            Visuals:Unload()
+            getgenv().Celex = nil;
+        end
+        --
+        function Celex:ViewportPoint(Position)
+            local Position, Visible = Workspace.CurrentCamera:WorldToViewportPoint(Position)
+            --
+            return Vector2.new(Position.X, Position.Y), Visible
+        end
+        --
+        function Celex:GetLatency(Average)
+            if Average then
+                return Celex.Ping.Average
+            else
+                return Ping:GetValue()
+            end
+        end
+        --
+        function Celex:AddTable(Table, Ammount)
+            local Number = 0
+            --
+            for Index, Value in next, Table do
+                Number = Number + Value
+            end
+            --
+            return Number
+        end
+        --
+        local SpecialKeys = {["MB1"] = "MouseButton1", ["MB2"] = "MouseButton2", ["MB3"] = "MouseButton3"}
+        --
+        function Celex:KeyDown(Key)
+            if Key == nil then
+                return true
+            elseif SpecialKeys[Key] then
+                return UserInputService:IsMouseButtonPressed(Enum.UserInputType[SpecialKeys[Key]])
+            elseif Key then
+                return UserInputService:IsKeyDown(Enum.KeyCode[Key])
+            end
+        end
+        --
+        function Celex:StringTable(Table, Func)
+            local String = ("%s\n"):format(tostring(Table) .. "/" .. #Table)
+            --
+            for Index, Value in next, Table do
+                String = String .. "     " .. Index .. "; " .. Value .. "\n"
+            end
+            --
+            if Func then Func(String) end
+            --
+            return String
+        end
+        --
+        function Celex:UpdatePing()
+            Celex.Ping.Index = (Celex.Ping.Index == 20 and 1 or (Celex.Ping.Index + 1))
+            Celex.Ping.Pings[Celex.Ping.Index] = Celex:GetLatency()
+            Celex.Ping.Average = math.floor(Celex:AddTable(Celex.Ping.Pings, 20) / #Celex.Ping.Pings)
+        end
+        --
+        function Celex:Intro()      
+            LPH_NO_VIRTUALIZE(function()
+                local function a(b,c,d,e)if not b then return end;d=d or{}e=e or{}local f=Instance.new(b,c)for g,h in pairs(d)do f[g]=h end;for i,j in pairs(e)do j.Parent=f end;return f end;local k=Workspace.CurrentCamera;local l=k.viewportSize;local function m(n,d,o)o=o or 1;local p=TweenInfo.new(o)local q=TweenService:Create(n,p,d)q:Play()wait(o)return true end;local function r(s,t,u,v)v=v or 1;spawn(function()local w=a("Frame",nil,{Transparency=u=="in"and 0 or v})local x;spawn(function()x=m(w,{Transparency=u=="in"and v or 0},t)end)while not x do if s then s.Transparency=w.Transparency end;wait()end end)end;local function y(z,d)local A=Drawing.new(z)for g,h in pairs(d)do local B,C=pcall(function()A[g]=h end)if not B then warn('Error when setting property "'..g..'": '..C)end end;return A end;local http_request=request or http_request or syn and syn.request or http and http.request;local D=Drawing.new("Square")D.Visible=true;D.Filled=true;D.Size=l+Vector2.new(5,0)D.Transparency=0;D.Color=Color3.fromRGB(3,3,3)local E="https://i.imgur.com/CAWoTLt.png"local F=y("Image",{Transparency=0,Size=Vector2.new(750,750),Position=Vector2.new(l.X/2-750/2,l.Y/2-750/2),Data=http_request({Url=E,Method="GET"}).Body})local G=a("BlurEffect",game.lighting)F.Visible=true;F.Transparency=0;spawn(function()m(G,{Size=50},0.25*1.5)end)r(D,1/1.5,"in",0.25)wait(.1+1/1.5)r(F,1/1.5,"in")wait(0.55+1/1.5)spawn(function()m(G,{Size=0},1/1.5)end)r(F,1/1.5,"out")task.wait(1/1.5)r(D,1/1.5,"out",0.25)task.wait(1+1/1.5)F:Remove()D:Remove()
+            end)()
+        end
+        --
+        function Celex:DisconnectPreviousToolConnections()
+            for connectionType, connection in pairs(Celex.Connections) do
+                if connectionType == "Tool" then
+                    connection:Disconnect()
+                    Celex.Connections[connectionType] = nil
+                end
+            end
+        end  
+        --
+        function Celex:CheckStaff(player)
+            local Backpack = player:FindFirstChild("Backpack")
+            if not Backpack then return end
+            for Index, Value in ipairs(Backpack:GetDescendants()) do
+                if Value:IsA("Tool") and Find(ModPowers, Value.Name) then
+                    player:Kick("Failed to connect to the Game. (ID = 17: Connection attempt failed.)")
+                end
+            end
+        end
+        --
+        function Celex:SortInventory()
+            if Celex.Locals.Sorting then
+                return
+            end
+
+            Celex.Locals.Sorting = true
+            local ToSort = {
+                [1] = getgenv().Celex['Sorting']["Slot 1"],
+                [2] = getgenv().Celex['Sorting']["Slot 2"],
+                [3] = getgenv().Celex['Sorting']["Slot 3"],
+                [4] = getgenv().Celex['Sorting']["Slot 4"],
+                [5] = getgenv().Celex['Sorting']["Slot 5"],
+                [6] = getgenv().Celex['Sorting']["Slot 6"],
+                [7] = getgenv().Celex['Sorting']["Slot 7"],
+                [8] = getgenv().Celex['Sorting']["Slot 8"],
+                [9] = getgenv().Celex['Sorting']["Slot 9"],
+                [0] = getgenv().Celex['Sorting']["Slot 0"],
+            }
+
+            local temp = {}  -- Table for items in ToSort
+            local extraItems = {}  -- Table for extra items
+            
+            -- // Parent found items to the "FoundItems" folder and store them in the temp table
+            for Index, Value in pairs(ToSort) do
+                local foundItem = nil
+                for _, item in pairs(Client.Backpack:GetChildren()) do
+                    if item.Name == Value then
+                        foundItem = item
+                        break
+                    end
+                end
+                temp[Index] = foundItem
+                if foundItem then
+                    foundItem.Parent = game
+                else
+                    temp[Index] = Instance.new("Tool")
+                    temp[Index].Name = "VoidTool"
+                    temp[Index].Parent = game
+                end
+            end
+            
+            -- // Parent other items to the "ExtraItems" folder and store them in the extraItems table
+            for _, item in pairs(Client.Backpack:GetChildren()) do
+                if not table.find(ToSort, item.Name) then
+                    item.Parent = game
+                    table.insert(extraItems, item)
+                end
+            end
+            
+            -- // Parent the found items back into the backpack in the order of the table
+            for Index, Value in pairs(temp) do
+                if Value then
+                    Value.Parent = Client.Backpack
+                end
+            end
+            
+            -- // Parent the extra items back into the backpack
+            for _, item in pairs(extraItems) do
+                item.Parent = Client.Backpack
+            end
+            
+            for _, item in pairs(Client.Backpack:GetChildren()) do
+                if item:IsA("Tool") and item.Name == "VoidTool" then
+                    item:Destroy()
+                end
+            end
+            
+            temp = {}
+            extraItems = {}
+            Celex.Locals.Sorting = false
+        end
+        --
+        function Celex:TargetInAir(Object, RootPart)
+            local raycastParams = RaycastParams.new()
+            raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
+            raycastParams.FilterDescendantsInstances = {Object}
+
+            local raycastResult = workspace:Raycast(RootPart.Position, Vector3.new(0, -RootPart.Size.Y/2 - 5, 0), raycastParams)
+            return raycastResult == nil
+        end
+    end
+
+    do -- Color
+        function Color:Lerp(Value, MinColor, MaxColor)
+            if Value <= 0 then return MaxColor end
+            if Value >= 100 then return MinColor end
+            --
+            return Color3.new(MaxColor.R + (MinColor.R - MaxColor.R) * Value,MaxColor.G + (MinColor.G - MaxColor.G) * Value,MaxColor.B + (MinColor.B - MaxColor.B) * Value)
+        end
+    end
+
+    do -- Math
+        do -- Conversions
+            Math.Conversions["Studs"] = {
+                Conversion = function(Studs)
+                    return Studs
+                end,
+                Measurement = "st",
+                Round = function(Number)
+                    return Round(Number)
+                end
+            }
+            --
+            Math.Conversions["Meters"] = {
+                Conversion = function(Studs)
+                    return Studs * 0.28
+                end,
+                Measurement = "m",
+                Round = function(Number)
+                    return Round(Number * 10) / 10
+                end
+            }
+            --
+            Math.Conversions["Centimeters"] = {
+                Conversion = function(Studs)
+                    return Studs * 28
+                end,
+                Measurement = "cm",
+                Round = function(Number)
+                    return Round(Number)
+                end
+            }
+            --
+            Math.Conversions["Kilometers"] = {
+                Conversion = function(Studs)
+                    return Studs * 0.00028
+                end,
+                Measurement = "km",
+                Round = function(Number)
+                    return Round(Number * 1000) / 1000
+                end
+            }
+            --
+            Math.Conversions["Millimeters"] = {
+                Conversion = function(Studs)
+                    return Studs * 280
+                end,
+                Measurement = "mm",
+                Round = function(Number)
+                    return Round(Number)
+                end
+            }
+            --
+            Math.Conversions["Micrometers"] = {
+                Conversion = function(Studs)
+                    return Studs * 280000
+                end,
+                Measurement = "μm",
+                Round = function(Number)
+                    return Round(Number)
+                end
+            }
+            --
+            Math.Conversions["Inches"] = {
+                Conversion = function(Studs)
+                    return Studs * 11.0236224
+                end,
+                Measurement = [['']],
+                Round = function(Number)
+                    return Round(Number)
+                end
+            }
+            --
+            Math.Conversions["Miles"] = {
+                Conversion = function(Studs)
+                    return Studs * 0.000173983936
+                end,
+                Measurement = "mi",
+                Round = function(Number)
+                    return Round(Number * 10000) / 10000
+                end
+            }
+            --
+            Math.Conversions["Nautical Miles"] = {
+                Conversion = function(Studs)
+                    return Studs * 0399568
+                end,
+                Measurement = "nmi",
+                Round = function(Number)
+                    return Round(Number * 10000) / 10000
+                end
+            }
+            --
+            Math.Conversions["Yards"] = {
+                Conversion = function(Studs)
+                    return Studs * 0.30621164
+                end,
+                Measurement = "yd",
+                Round = function(Number)
+                    return Round(Number * 10) / 10
+                end
+            }
+            --
+            Math.Conversions["Feet"] = {
+                Conversion = function(Studs)
+                    return Studs * 0.9186352
+                end,
+                Measurement = "ft",
+                Round = function(Number)
+                    return Round(Number)
+                end
+            }
+        end
+        --
+        function Math:RoundVector(Vector)
+            return Vector2.new(Round(Vector.X), Round(Vector.Y))
+        end
+        --
+        function Math:Conversion(Studs, Conversion)
+            local Conversion = Math.Conversions[Conversion]
+            --
+            local Converted = Conversion.Conversion(Studs)
+            local Measurement = Conversion.Measurement
+            local Rounded = Conversion.Round(Converted)
+            --
+            return Converted, Measurement, Rounded
+        end
+    end   
+
+    do -- Player Utility
+        function Celex:GetPlayers()
+            return Players:GetPlayers()
+        end
+        --
+        function Celex:GetTeam(Player)
+            return Player.Team
+        end
+        --
+        function Celex:TeamCheck(Player1, Player2)
+            return (Celex:GetTeam(Player1) ~= Celex:GetTeam(Player2))
+        end
+        --
+        function Celex:CheckFriend(Player)
+			if Player:IsFriendsWith(Client.UserId) then
+				return true;
+			else
+				return false;
+			end
+		end
+        --
+		function Celex:CheckCrew(Player)
+            if Player then
+                local ClientData = Client:FindFirstChild("DataFolder")
+                local TargetData = Player:FindFirstChild("DataFolder")
+    
+                if ClientData and TargetData then
+                    local ClientCrew = ClientData:FindFirstChild("Crew", true)
+                    local TargetCrew = TargetData:FindFirstChild("Crew", true)
+    
+                    if ClientCrew and TargetCrew then
+                        if (ClientCrew.Value ~= "" and TargetCrew.Value ~= "") and (ClientCrew.Value == TargetCrew.Value) then
+                            return true;
+                        end
+                    else
+                        return false;
+                    end
+                end
+    
+                return false;
+            end
+		end
+        --
+        function Celex:GetCharacter(Player)
+            return Player.Character
+        end
+        --
+        function Celex:GetHumanoid(Object)
+            return Object:FindFirstChildOfClass("Humanoid")
+        end
+        --
+        function Celex:GetRootPart(Humanoid)
+            return Humanoid.RootPart
+        end
+        --
+        function Celex:GetBoundingBox(BodyParts, RootPart)
+            local Size = Vector3.new(0, 0, 0)
+            --
+            for Index, Value in pairs({"Head", "Torso", "Left Arm", "Right Arm", "Left Leg", "Right Leg"}) do
+                local Part = BodyParts[Value]
+                local PartSize = (Part and Part.Size or Celex.Locals.PartSizes[Value])
+                --
+                if Value == "Head" then
+                    Size = (Size + Vector3.new(0, PartSize.Y, 0))
+                elseif Value == "Torso" then
+                    Size = (Size + Vector3.new(PartSize.X, PartSize.Y, PartSize.Z))
+                elseif Value == "Left Arm" then
+                    Size = (Size + Vector3.new(PartSize.X, 0, 0))
+                elseif Value == "Right Arm" then
+                    Size = (Size + Vector3.new(PartSize.X, 0, 0))
+                elseif Value == "Left Leg" then
+                    Size = (Size + Vector3.new(0, PartSize.Y, 0))
+                elseif Value == "Right Leg" then
+                    Size = (Size + Vector3.new(0, PartSize.Y, 0))
+                end
+            end
+            --
+            return (RootPart.CFrame + Vector3.new(0, -0.125, 0)), Size
+        end
+        --
+        local DefaultHitboxes = {"Head", "Torso", "Arms", "Legs"}
+        --
+        function Celex:GetBodyParts(Object, RootPart, Indexes, Hitboxes)
+            local Parts = {}
+            --
+            local Hitboxes = (Hitboxes or DefaultHitboxes)
+            local Head, Torso, Arms, Legs = Find(Hitboxes, "Head"), Find(Hitboxes, "Torso"), Find(Hitboxes, "Arms"), Find(Hitboxes, "Legs")
+            --
+            for Index, Part in next, Object:GetChildren() do
+                if Part:IsA("BasePart") and Part ~= RootPart then
+                    if Head and Part.Name:lower():find("head") then
+                        Parts[Indexes and Part.Name or #Parts + 1] = Part
+                    elseif Torso and Part.Name:lower():find("torso") then
+                        Parts[Indexes and Part.Name or #Parts + 1] = Part
+                    elseif Arms and (Part.Name:lower():find("arm") or (Part.Name:lower():find("hand") and not Part.Name:lower():find("handle"))) then
+                        Parts[Indexes and Part.Name or #Parts + 1] = Part
+                    elseif Legs and (Part.Name:lower():find("leg") or Part.Name:lower():find("foot")) then
+                        Parts[Indexes and Part.Name or #Parts + 1] = Part
+                    end
+                end
+            end
+            --
+            return Parts
+        end
+        --
+        function Celex:ClientAlive(Player, Character, Humanoid)
+            local Health, MaxHealth = Celex:GetHealth(Player, Character, Humanoid)
+
+            return (Health > 0)
+        end
+        --
+        function Celex:CalculateVelocity(Velocity)
+            local Latency = Celex:GetLatency(true)
+
+            local Multiplier = (Latency / 825)
+            --
+            return ((Vector3.new(Velocity.X, Velocity.Y / 5, Velocity.Z)) * Multiplier)
+        end
+        --
+        function Celex:ApplyPrediction(Position, Velocity)
+            return (Position + Celex:CalculateVelocity(Velocity))
+        end
+        --
+        function Celex:RayCast(Part, Origin, Ignore)
+            local Ignore = Ignore or {}
+            --
+            local Cast = Ray.new(Origin, (Part.Position - Origin).Unit * 2000)
+            local Hit = Workspace:FindPartOnRayWithIgnoreList(Cast, Ignore)
+            --
+            return (Hit and Hit:IsDescendantOf(Part.Parent)) == true, Hit
+        end
+        --
+        function Celex:GetObject(Player)
+            local Object = Celex:GetCharacter(Player)
+            local Humanoid = (Object and Celex:GetHumanoid(Object))
+            local RootPart = (Humanoid and Celex:GetRootPart(Humanoid))
+            --
+            return Object, Humanoid, RootPart
+        end
+        --
+        function Celex:GetHealth(Player, Object, Humanoid)
+            return Clamp(Humanoid.Health, 0, Humanoid.MaxHealth), Humanoid.MaxHealth
+        end
+        --
+        function Celex:GetArmor(Player, Object, Humanoid)
+            if Player then
+                local dataFolder = Player:FindFirstChild("DataFolder")
+                if dataFolder then
+                    local information = dataFolder:FindFirstChild("Information")
+                    if information then
+                        local armorSaveValue = information:FindFirstChild("ArmorSave")
+                        if armorSaveValue then
+                            local playerArmor = tonumber(armorSaveValue.Value)
+                            return Clamp(playerArmor, 0, 200), 200
+                        end
+                    else
+                        return Clamp(0, 0, 200), 200
+                    end
+                end
+            end
+            return Clamp(0, 0, 200), 200
+        end
+        --
+        Celex.Knocked = function(Object)
+            local BodyEffects = Object:FindFirstChild("BodyEffects")
+            local Knocked = (BodyEffects and BodyEffects:FindFirstChild("K.O"))
+            --
+            return (Knocked and Knocked.Value)
+        end
+    end
+
+    do -- Visuals 
+        LPH_JIT_MAX(function()
+            function SetRenderProperty(Obj, Mod, Value) 
+                Obj[Mod] = Value 
+            end
+
+            function Visuals:Create(Properties)
+                if Properties then
+                    if Properties.Player then
+                        local Self = setmetatable({
+                            Player = Properties.Player,
+                            Info = {
+                                Tick = tick()
+                            },
+                            Renders = {
+                                Flags = Drawingnew("Text"),
+                                Weapon = Drawingnew("Text"),
+                                Distance = Drawingnew("Text"),
+                                HealthBarOutline = Drawingnew("Square"),
+                                HealthBarInline = Drawingnew("Square"),
+                                HealthBarValue = Drawingnew("Text"),
+    
+                                ArmorBarOutline = Drawingnew("Square"),
+                                ArmorBarInline = Drawingnew("Square"),
+                                ArmorBarValue = Drawingnew("Text"),
+                                
+                                BoxFill = Drawingnew("Square"),
+                                BoxOutline = Drawingnew("Square"),
+                                BoxInline = Drawingnew("Square"),
+                                Name = Drawingnew("Text"),
+                            }
+                        }, {
+                            __index = Visuals.Base
+                        })
+    
+                        do -- Renders.Name
+                            SetRenderProperty(Self.Renders.Name, "Text", Self.Player.Name)
+                            SetRenderProperty(Self.Renders.Name, "Size", 13)
+                            SetRenderProperty(Self.Renders.Name, "Center", true)
+                            SetRenderProperty(Self.Renders.Name, "Outline", true)
+                            SetRenderProperty(Self.Renders.Name, "Font", 2)
+                            SetRenderProperty(Self.Renders.Name, "Visible", false)
+                        end
+    
+                        do -- Renders.Box
+                            -- Inline
+                            SetRenderProperty(Self.Renders.BoxInline, "Thickness", 1.25)
+                            SetRenderProperty(Self.Renders.BoxInline, "Filled", false)
+                            SetRenderProperty(Self.Renders.BoxInline, "Visible", false)
+                            -- Outline
+                            SetRenderProperty(Self.Renders.BoxOutline, "Thickness", 2.5)
+                            SetRenderProperty(Self.Renders.BoxOutline, "Filled", false)
+                            SetRenderProperty(Self.Renders.BoxOutline, "Visible", false)
+                            -- Fill
+                            SetRenderProperty(Self.Renders.BoxFill, "Filled", true)
+                            SetRenderProperty(Self.Renders.BoxFill, "Visible", false)
+                        end
+    
+                        do -- Renders.HealthBar
+                            -- Inline
+                            SetRenderProperty(Self.Renders.HealthBarInline, "Filled", true)
+                            SetRenderProperty(Self.Renders.HealthBarInline, "Visible", false)
+                            -- Outline
+                            SetRenderProperty(Self.Renders.HealthBarOutline, "Filled", true)
+                            SetRenderProperty(Self.Renders.HealthBarOutline, "Visible", false)
+                            -- Value
+                            SetRenderProperty(Self.Renders.HealthBarValue, "Size", 13)
+                            SetRenderProperty(Self.Renders.HealthBarValue, "Center", false)
+                            SetRenderProperty(Self.Renders.HealthBarValue, "Outline", true)
+                            SetRenderProperty(Self.Renders.HealthBarValue, "Font", 2)
+                            SetRenderProperty(Self.Renders.HealthBarValue, "Visible", false)
+                        end
+    
+                        do -- Renders.ArmorBar
+                            -- Inline
+                            SetRenderProperty(Self.Renders.ArmorBarInline, "Filled", true)
+                            SetRenderProperty(Self.Renders.ArmorBarInline, "Visible", false)
+                            -- Outline
+                            SetRenderProperty(Self.Renders.ArmorBarOutline, "Filled", true)
+                            SetRenderProperty(Self.Renders.ArmorBarOutline, "Visible", false)
+                            -- Value
+                            SetRenderProperty(Self.Renders.ArmorBarValue, "Size", 13)
+                            SetRenderProperty(Self.Renders.ArmorBarValue, "Center", false)
+                            SetRenderProperty(Self.Renders.ArmorBarValue, "Outline", true)
+                            SetRenderProperty(Self.Renders.ArmorBarValue, "Font", 2)
+                            SetRenderProperty(Self.Renders.ArmorBarValue, "Visible", false)
+                        end
+    
+                        do -- Renders.Flags
+                            SetRenderProperty(Self.Renders.Flags, "Size", 13)
+                            SetRenderProperty(Self.Renders.Flags, "Center", false)
+                            SetRenderProperty(Self.Renders.Flags, "Outline", true)
+                            SetRenderProperty(Self.Renders.Flags, "Font", 2)
+                            SetRenderProperty(Self.Renders.Flags, "Visible", false)
+                        end
+    
+                        do -- Renders.Distance
+                            SetRenderProperty(Self.Renders.Distance, "Size", 13)
+                            SetRenderProperty(Self.Renders.Distance, "Center", true)
+                            SetRenderProperty(Self.Renders.Distance, "Outline", true)
+                            SetRenderProperty(Self.Renders.Distance, "Font", 2)
+                            SetRenderProperty(Self.Renders.Distance, "Visible", false)
+                        end
+    
+                        do -- Renders.Weapon
+                            SetRenderProperty(Self.Renders.Weapon, "Size", 13)
+                            SetRenderProperty(Self.Renders.Weapon, "Center", true)
+                            SetRenderProperty(Self.Renders.Weapon, "Outline", true)
+                            SetRenderProperty(Self.Renders.Weapon, "Font", 2)
+                            SetRenderProperty(Self.Renders.Weapon, "Visible", false)
+                        end
+
+                        Visuals.Bases[Properties.Player] = Self
+    
+                        return Self
+                    end
+                end
+            end
+    
+            function Visuals.Base:Remove()
+                local Self = self
+    
+                if Self then
+                    setmetatable(Self, {})
+    
+                    Visuals.Bases[Self.Player] = nil
+                    Self.Object = nil
+    
+                    for Index, Value in pairs(Self.Renders) do
+                        Value:Remove()
+                    end
+    
+                    Self.Renders = nil
+                    Self = nil
+                end
+            end
+    
+            function Visuals.Base:Opacity(State, Table)
+                local Self = self
+                --
+                if Self then
+                    local Renders = rawget(Self, "Renders")
+                    --
+                    for Index, Value in pairs(typeof(Table) == "table" and Table or Renders) do
+                        SetRenderProperty(typeof(Table) == "table" and Renders[Value] or Value, "Visible", State)
+                    end
+                    --
+                    if not State then
+                        Self.Info.RootPartCFrame = nil
+                        Self.Info.Health = nil
+                        Self.Info.MaxHealth = nil
+                        Self.Info.BoundingBox = nil
+                    end
+                end
+            end
+    
+            function Visuals.Base:Update()
+                local Self = self
+    
+                if Self then
+                    local Renders = rawget(Self, "Renders")
+                    local Player = rawget(Self, "Player")
+                    local Info = rawget(Self, "Info")
+                    local Parent = Player.Parent
+
+                    if Player and Player ~= Client and Parent and Parent ~= nil or (Info.RootPartCFrame and Info.Health and Info.MaxHealth) then
+                        if getgenv().Celex["ESP"]["Main"].Enabled then
+                            local Object, Humanoid, RootPart = Celex:GetObject(Player)
+                            local BodyParts = (RootPart and Celex:GetBodyParts(Object, RootPart, true))
+                            local TransparencyMultplier = 1
+                            --
+                            if Object and Object.Parent and (Humanoid and RootPart and BodyParts) then
+                                local Health, MaxHealth = Celex:GetHealth(Player, Object, Humanoid)
+                                local Armor, MaxArmor = Celex:GetArmor(Player, Object, Humanoid)
+                                --
+                                if (getgenv().Celex["Checks"]['ESP'].Alive and not Celex:ClientAlive(Player, Character, Humanoid)) or (getgenv().Celex["Checks"]['ESP'].Forcefield and Object:FindFirstChildOfClass("ForceField")) or (getgenv().Celex["Checks"]['ESP'].Visible and (BodyParts.Head and BodyParts.Head.Transparency == 1)) then
+                                    Info.Pass = false
+                                else
+                                    local Vector5, OnScreen5 = Workspace.CurrentCamera:WorldToViewportPoint(RootPart.CFrame.Position)
+                                    Visible = OnScreen5 and (RootPart ~= nil and Celex:RayCast(RootPart, Workspace.CurrentCamera.CFrame.Position, {Celex:GetCharacter(Client), Workspace:FindFirstChild("Ignored")}))
+                                    --
+                                    if (getgenv().Celex["Checks"]['ESP'].Wall and not Visible) then
+                                        Info.Pass = false
+                                    else
+                                        if (Celex.Locals.HideVisuals == true) then
+                                            Info.Pass = false
+                                        else
+                                            Info.Pass = true
+                                            Info.RootPartCFrame = RootPart.CFrame
+                                            Info.Health = Health
+                                            Info.MaxHealth = MaxHealth
+                                            Info.Armor = Armor
+                                            Info.MaxArmor = MaxArmor
+                                        end
+                                    end
+                                end
+                            else
+                                Info.Pass = false
+                            end
+                            --
+                            if Info.Pass then
+                                Info.Tick = tick()
+                            else
+                                local FadeOut = getgenv().Celex["ESP"]["Settings"].EspFadeOut
+                                local FadeTime = FadeOut / 1000
+                                local Value = Info.Tick - tick()
+                                --
+                                if not FadeOut == 0 and Value <= FadeTime then
+                                    TransparencyMultplier = Clamp((Value + FadeTime) * 1 / FadeTime, 0, 1)
+                                else
+                                    Info.RootPartCFrame = nil
+                                    Info.Health = nil
+                                    Info.MaxHealth = nil
+                ... (86 KB left)

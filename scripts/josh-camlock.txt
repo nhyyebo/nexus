@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Aepione/Josh-lock/refs/heads/main/Josh%20camlock"))()

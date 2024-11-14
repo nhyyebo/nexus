@@ -1,0 +1,12 @@
+-- By ezterminals on discord/Tiktok Give credits or raided.
+-- Beta, You may think this is bad, But Test it.
+-- Version: TerminalWare V1
+-- Change Sets if you like.
+-- Bate TriggerBot
+-- 3%534:8;@“#
+-- Any Copy Of This Script Will be taken down. And ACCOUNT suspended.
+-- .gg/8yYZc4CHHp
+-- If you see the owner change at any point it will be me
+-- This is the original script and it always will be.
+-- Coped, Ezterminals on TikTok follow me.
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Creatingtesting/BateActualTriggerBot/main/Legit/By/ezterminals"))()

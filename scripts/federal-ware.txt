@@ -1,0 +1,101 @@
+getgenv().FederalWare = {
+    Settings = {
+        ['Key'] = "oh king zhy",
+    },
+    Silent = { --- use on dh ripoffs
+        ['Enabled'] = FakeHeadless,
+        ['Prediction'] = 0.133,
+        ['HitPart'] = "HumanoidRootPart",
+        ['Key'] = "E", 
+        ['HitChance'] = 90, 
+        ['AlwaysMode'] = true, -- if false then the silent cant be turned off
+        ['ThirdPerson'] = true,
+        ['FirstPerson'] = true,
+        ['AirshotEnabled'] = true, -- if false just uses the hitpart
+        ['AirHitPart'] = "UpperTorso"
+    },
+    FOV = {
+      ['Silent'] = {
+           ['Visible'] = true,
+           ['Filled'] = false,
+           ['Size'] = 100.5,
+           ['Transparency'] = 1,
+           ['Thickness'] = 0.7,
+           ['Color'] = Color3.fromRGB(5, 6, 7),
+    },
+    Camlock = { --- settings fo fov?
+           ['UseFov'] = true, 
+           ['Visible'] = false, 
+           ['Filled'] = false,
+           ['Size'] = 60,
+           ['Transparency'] = 1,
+           ['Thickness'] = 1,
+           ['Color'] = Color3.fromRGB(1, 0, 0)
+
+         },
+    },
+    FovType = {
+        ['Target'] = true,
+    },
+
+    Camlock = { 
+        ['Enabled'] = true,
+        ['Key'] = "Q",
+        ['Prediction'] = 0.1,
+        ['HitPart'] = "UpperTorso", 
+        ['AirshotEnabled'] = false,
+        ['Airshot_HitPart'] = "LowerTorso",
+        ['Distance'] = 600, -- studs 
+        ['Smoothing'] = false,
+        ['Smoothness'] = 1
+    },
+    Shake = { 
+      ['Shake'] = true, 
+        ['Shake_X'] = 0, 
+        ['Shake_Y'] = 0,
+        ['Shake_Z'] = 0 
+    },
+
+
+
+    Args = { 
+        Silent = {
+            ['KnockCheck'] = true, 
+            ['CrewCheck'] = true, 
+            ['WallCheck'] = false, 
+            ['FriendCheck'] = true, 
+            ['GrabCheck'] = true, 
+            ['AntiCurve'] = true 
+        },
+        Camlock = {
+            ['KnockCheck'] = true,
+            ['WallCheck'] = false, 
+        }
+    },
+
+
+
+
+    AntiGroundShots = {
+        ['Enabled'] = true,
+        ['DelayGroundShot'] = 0.5
+    },
+
+    AutoPrediction = {
+     ['Enabled'] = true,
+        ['NewPred'] = 0.1, -- changes the pred too so many ms or seconds
+        ['Ping_10'] = 0.10,
+        ['Ping_20'] = 0.171,
+        ['Ping_30'] = 0.172,
+        ['Ping_40'] = 0.1273,
+        ['Ping_50'] = 0.125,
+        ['Ping_60'] = 0.1267,
+        ['Ping_70'] = 0.1335,
+        ['Ping_80'] = 0.734,
+        ['Ping_90'] = 0.6365,
+        ['Ping_100'] = 0.1174,
+        ['Ping_110'] = 0.172,
+        ['Ping_120'] = 0.162,
+        ['Ping_130'] = 0.123,
+        ['Ping_140'] = 0.136,
+... (59 lines left)

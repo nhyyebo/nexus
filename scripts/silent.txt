@@ -1,0 +1,13 @@
+getgenv().Settings = {
+    SilentAimEnabled = true,
+    HitPart = "LowerTorso",
+    SilentPrediction = 0.0027163,
+    FOVSize = 120,
+    HorizontalPrediction = 0.17,
+    VerticalPrediction = 0.14,
+    Autopred = false,
+    Highlight = true,
+    Showfov = true
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/YoBro24/SilentAim/refs/heads/main/Ni",true))()

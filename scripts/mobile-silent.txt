@@ -1,0 +1,13 @@
+getgenv().meowguy = {
+    Prediction = 0.1612, -- Adjust prediction as you want
+    FOVSize = 85, -- Minimum is 60-150
+    FOVTransparency = 0.2, -- Adjust to 0 if you want it streamable
+    ShowLine = false, -- Set to true or false; now it's fully streamable
+    HitPart = "HumanoidRootPart",
+    AutoAirHitPart = "Head",
+    JumpOffset = 2.0, -- Example offset for jumping
+    FallOffset = -2.0, -- Example offset for falling
+    MacroPrediction = 0.32
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/meowguy1/tappingwithmeowguy/main/Tapmore"))()

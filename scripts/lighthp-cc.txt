@@ -1,0 +1,2 @@
+# LIGHTHP.CC
+loadstring(game:HttpGet("https://raw.githubusercontent.com/english-or-spanish09/LightHp.cc-v4/main/LightHp"))()

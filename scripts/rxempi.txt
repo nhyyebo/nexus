@@ -1,0 +1,690 @@
+Nhyira
+nhyira_90709
+Invisible
+
+:) — 13/10/2024 15:27
+Forwarded
+rxempi (skidded off blatant.cc)
+-- Made by @zeins5 on discord
+local introCompleted = false
+
+if game:IsLoaded() then
+    local ShowIntro = true
+Expand
+Rxempi Premium 2.txt
+13 KB
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/6HMp1NDn"))()
+local Window = Library:CreateWindow("レシェンピ.PrEMIUM Rxempi💎", Vector2.new(310, 310), Enum.KeyCode.P)
+    local AimingTab = Window:CreateTab("Locks")
+    local testSection = AimingTab:CreateSector("CamLock", "left")
+    local bladLockPrediction = 0
+   testSection:AddButton("sans.cc", function(IhateGayPeople)
+loadstring(game:HttpGet("https://pastebin.com/raw/XNBfsZJq"))()
+     end) 
+   testSection:AddButton("rxceph", function(IhateGayPeople)
+loadstring(game:HttpGet("https://pastebin.com/raw/9M8C5x6N"))()
+     end) 
+testSection:AddButton("aura cc", function(IhateGayPeople)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/luaarmorsystem/lua-armor-whitelisting/main/aura.cc/customer%3B-%2316229"))()
+     end) 
+testSection:AddButton("blazed", function(IhateGayPeople)
+loadstring(game:HttpGet("https://rentry.org/blazed-remake/raw"))()
+     end) 
+local testSection = AimingTab:CreateSector("CamLock", "right")
+
+testSection:AddButton("meowguy", function(IhateGayPeople)
+getgenv().meowguy = {
+    Prediction = 0.1612, -- Adjust prediction as you want
+    FOVSize = 85, -- Minimum is 60-150
+    FOVTransparency = 0.2, -- Adjust to 0 if you want it streamable
+    ShowLine = false, -- Set to true or false; now it's fully streamable
+    HitPart = "HumanoidRootPart",
+    AutoAirHitPart = "Head",
+    JumpOffset = 2.0, -- Example offset for jumping
+    FallOffset = -2.0 -- Example offset for falling
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/meowguy1/tappingwithmeowguy/main/Tapmore"))()
+     end) 
+testSection:AddButton("wowo cam", function(IhateGayPeople)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Wowo-Pogi/WowoV3/main/Xddontskidmeplswowov3"))()
+     end) 
+testSection:AddButton("taapbound.cc", function(IhateGayPeople)
+loadstring(game:HttpGet('https://paste.gg/p/tapboundcc%20roblox/74004de878ca419bb21081e9cbdc6f1f/files/5737ee72927549fb9d68be5d592adfea/raw'))()
+     end)
+     local AimingTab = Window:CreateTab("other locks")
+    local testSection = AimingTab:CreateSector("random locks", "Left")
+    
+testSection:AddButton("Macro shift", function(IhateGayPeople)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Unknownproootest/Permanent-Shift-Lock-Alt/alt/PermShiftlockAlt'))()
+     end)
+    
+     testSection:AddButton("anti lock", function(IhateGayPeople)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/wenny69420/KirbswareScripts/main/MobileV3'))()
+     end)
+     
+     testSection:AddButton("fps boost", function(IhateGayPeople)
+local a = tick()
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+wait(.1)
+sethiddenproperty(game.Lighting, "Technology", 2)
+sethiddenproperty(workspace:FindFirstChildOfClass("Terrain"), "Decoration", false)
+settings().Rendering.QualityLevel = 1
+setsimulationradius(0,0)
+game.Lighting.GlobalShadows = false
+game.Lighting.FogEnd = 9e9
+workspace:FindFirstChildOfClass("Terrain").Elasticity = 0
+for b, c in pairs(game:GetDescendants()) do
+    task.spawn(
+        function()
+            wait()
+            if c:IsA("DataModelMesh") then
+                sethiddenproperty(c, "LODX", Enum.LevelOfDetailSetting.Low)
+                sethiddenproperty(c, "LODY", Enum.LevelOfDetailSetting.Low)
+                c.CollisionFidelity = "Hull"
+            elseif c:IsA("UnionOperation") then
+                c.CollisionFidelity = "Hull"
+            elseif c:IsA("Model") then
+                sethiddenproperty(c, "LevelOfDetail", 1)
+            elseif c:IsA("BasePart") then
+                c.Reflectance = 0
+                c.CastShadow = false
+            end
+        end
+    )
+end
+for d, e in pairs(game.Lighting:GetChildren()) do
+    if e:IsA("PostEffect") then
+        e.Enabled = false
+    end
+end
+warn("Low graphics loaded! (" .. math.floor(tick() - a) .. "s)")
+     end)
+         
+     local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local Notify = AkaliNotif.Notify;
+Notify({
+Description = "by Rxmepi";
+Title = "Rxmepi.hub";
+Duration = 3;
+})
+testSection:AddButton("Rxempi cam op", function(IhateGayPeople)
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+... (467 lines left)
+Collapse
+Rxempipremium.txt
+21 KB
+#script-request  •  13/10/2024
+:) — 16/10/2024 03:01
+op asf
+﻿
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/6HMp1NDn"))()
+local Window = Library:CreateWindow("レシェンピ.PrEMIUM Rxempi💎", Vector2.new(310, 310), Enum.KeyCode.P)
+    local AimingTab = Window:CreateTab("Locks")
+    local testSection = AimingTab:CreateSector("CamLock", "left")
+    local bladLockPrediction = 0
+   testSection:AddButton("sans.cc", function(IhateGayPeople)
+loadstring(game:HttpGet("https://pastebin.com/raw/XNBfsZJq"))()
+     end) 
+   testSection:AddButton("rxceph", function(IhateGayPeople)
+loadstring(game:HttpGet("https://pastebin.com/raw/9M8C5x6N"))()
+     end) 
+testSection:AddButton("aura cc", function(IhateGayPeople)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/luaarmorsystem/lua-armor-whitelisting/main/aura.cc/customer%3B-%2316229"))()
+     end) 
+testSection:AddButton("blazed", function(IhateGayPeople)
+loadstring(game:HttpGet("https://rentry.org/blazed-remake/raw"))()
+     end) 
+local testSection = AimingTab:CreateSector("CamLock", "right")
+
+testSection:AddButton("meowguy", function(IhateGayPeople)
+getgenv().meowguy = {
+    Prediction = 0.1612, -- Adjust prediction as you want
+    FOVSize = 85, -- Minimum is 60-150
+    FOVTransparency = 0.2, -- Adjust to 0 if you want it streamable
+    ShowLine = false, -- Set to true or false; now it's fully streamable
+    HitPart = "HumanoidRootPart",
+    AutoAirHitPart = "Head",
+    JumpOffset = 2.0, -- Example offset for jumping
+    FallOffset = -2.0 -- Example offset for falling
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/meowguy1/tappingwithmeowguy/main/Tapmore"))()
+     end) 
+testSection:AddButton("wowo cam", function(IhateGayPeople)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Wowo-Pogi/WowoV3/main/Xddontskidmeplswowov3"))()
+     end) 
+testSection:AddButton("taapbound.cc", function(IhateGayPeople)
+loadstring(game:HttpGet('https://paste.gg/p/tapboundcc%20roblox/74004de878ca419bb21081e9cbdc6f1f/files/5737ee72927549fb9d68be5d592adfea/raw'))()
+     end)
+     local AimingTab = Window:CreateTab("other locks")
+    local testSection = AimingTab:CreateSector("random locks", "Left")
+    
+testSection:AddButton("Macro shift", function(IhateGayPeople)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Unknownproootest/Permanent-Shift-Lock-Alt/alt/PermShiftlockAlt'))()
+     end)
+    
+     testSection:AddButton("anti lock", function(IhateGayPeople)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/wenny69420/KirbswareScripts/main/MobileV3'))()
+     end)
+     
+     testSection:AddButton("fps boost", function(IhateGayPeople)
+local a = tick()
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+wait(.1)
+sethiddenproperty(game.Lighting, "Technology", 2)
+sethiddenproperty(workspace:FindFirstChildOfClass("Terrain"), "Decoration", false)
+settings().Rendering.QualityLevel = 1
+setsimulationradius(0,0)
+game.Lighting.GlobalShadows = false
+game.Lighting.FogEnd = 9e9
+workspace:FindFirstChildOfClass("Terrain").Elasticity = 0
+for b, c in pairs(game:GetDescendants()) do
+    task.spawn(
+        function()
+            wait()
+            if c:IsA("DataModelMesh") then
+                sethiddenproperty(c, "LODX", Enum.LevelOfDetailSetting.Low)
+                sethiddenproperty(c, "LODY", Enum.LevelOfDetailSetting.Low)
+                c.CollisionFidelity = "Hull"
+            elseif c:IsA("UnionOperation") then
+                c.CollisionFidelity = "Hull"
+            elseif c:IsA("Model") then
+                sethiddenproperty(c, "LevelOfDetail", 1)
+            elseif c:IsA("BasePart") then
+                c.Reflectance = 0
+                c.CastShadow = false
+            end
+        end
+    )
+end
+for d, e in pairs(game.Lighting:GetChildren()) do
+    if e:IsA("PostEffect") then
+        e.Enabled = false
+    end
+end
+warn("Low graphics loaded! (" .. math.floor(tick() - a) .. "s)")
+     end)
+         
+     local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local Notify = AkaliNotif.Notify;
+Notify({
+Description = "by Rxmepi";
+Title = "Rxmepi.hub";
+Duration = 3;
+})
+testSection:AddButton("Rxempi cam op", function(IhateGayPeople)
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+local Mouse = game.Players.LocalPlayer:GetMouse()
+local CamlockState = true
+local Prediction = 0.192319
+local HorizontalPrediction = 0.1760773
+local VerticalPrediction = 0.160692
+local XPrediction = 0.176073
+local YPrediction = 0.167092
+local Smoothness = 0.1-- Adjust this value for smoother or faster camera movement 
+local Locked = true
+getgenv().Key = "q"
+
+function FindNearestEnemy()
+    local ClosestDistance, ClosestPlayer = math.huge, nil
+    local CenterPosition =
+        Vector2.new(
+        game:GetService("GuiService"):GetScreenResolution().X / 2,
+        game:GetService("GuiService"):GetScreenResolution().Y / 2
+    )
+
+    for _, Player in ipairs(game:GetService("Players"):GetPlayers()) do
+        if Player ~= LocalPlayer then
+            local Character = Player.Character
+            if Character and Character:FindFirstChild("HumanoidRootPart") and Character.Humanoid.Health > 0 then
+                local Position, IsVisibleOnViewport =
+                    game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(Character.HumanoidRootPart.Position)
+
+                if IsVisibleOnViewport then
+                    local Distance = (CenterPosition - Vector2.new(Position.X, Position.Y)).Magnitude
+                    if Distance < ClosestDistance then
+                        ClosestPlayer = Character.HumanoidRootPart
+                        ClosestDistance = Distance
+                    end
+                end
+            end
+        end
+    end
+
+    return ClosestPlayer
+end
+
+local enemy = nil
+
+-- Function to smoothly aim the camera at the nearest enemy's HumanoidRootPart with prediction values
+RunService.Heartbeat:Connect(function()
+    if CamlockState == true then
+        if enemy then
+            local camera = workspace.CurrentCamera
+            local targetPosition = enemy.Position + enemy.Velocity * Prediction
+            targetPosition = Vector3.new(targetPosition.X + XPrediction, targetPosition.Y + YPrediction, targetPosition.Z)
+            
+            -- Interpolate between the current camera position and the target position
+            local currentPosition = camera.CFrame.Position
+            local newPosition = currentPosition:Lerp(targetPosition, Smoothness)
+            
+            camera.CFrame = CFrame.new(newPosition, targetPosition)
+        end
+    end
+end)
+
+Mouse.KeyDown:Connect(function(k)    
+    if k == getgenv().Key then    
+            Locked = not Locked    
+            if Locked then    
+                enemy = FindNearestEnemy()
+                CamlockState = true
+             else    
+                if enemy ~= nil then    
+                    enemy = nil    
+                    CamlockState = false
+                end    
+            end    
+    end    
+ end)
+
+local BladLock = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Logo = Instance.new("ImageLabel")
+local TextButton = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+
+--Properties:
+
+BladLock.Name = "BlackGuy"
+BladLock.Parent = game.CoreGui
+BladLock.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = BladLock
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.133798108, 0, 0.20107238, 0)
+Frame.Size = UDim2.new(0, 80, 0, 70)
+Frame.Active = true
+Frame.Draggable = true
+
+local function TopContainer()
+    Frame.Position = UDim2.new(0.5, -Frame.AbsoluteSize.X / 2, 0, -Frame.AbsoluteSize.Y / 2)
+end
+
+TopContainer()
+Frame:GetPropertyChangedSignal("AbsoluteSize"):Connect(TopContainer)
+
+UICorner.Parent = Frame
+
+Logo.Name = "Logo"
+Logo.Parent = Frame
+Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Logo.BackgroundTransparency = 5.000
+Logo.BorderColor3 = Color3.fromRGB(240, 255, 240)
+Logo.BorderSizePixel = 0
+Logo.Position = UDim2.new(0.326732665, 0, 0, 0)
+Logo.Size = UDim2.new(0, 30, 0, 60)
+Logo.Image = "rbxassetid://"
+Logo.ImageTransparency = 0.200
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 5.000
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.0792079195, 0, 0.18571429, 0)
+TextButton.Size = UDim2.new(0, 70, 0, 50)
+TextButton.Font = Enum.Font.SourceSansSemibold
+TextButton.Text = "Rx Camlock"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 24.000
+TextButton.TextWrapped = true
+local state = true
+TextButton.MouseButton1Click:Connect(
+    function()
+        state = not state
+        if not state then
+            TextButton.Text = "Rx Cam On"
+            CamlockState = true
+            enemy = FindNearestEnemy()
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Rx Camlock",
+    Text = "Locking To"
+
+})
+        else
+            TextButton.Text = "Rx Cam Off"
+            CamlockState = false
+            enemy = nil
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Rx Camlock";
+    Text = "Unlocked";
+    Icon = "rbxassetid://6864978825";
+})
+        end
+    end
+)
+
+UICorner_2.Parent = TextButton
+Frame.Active = true
+Frame.Draggable = true
+     end)
+
+testSection:AddButton("Rxempi op cam2", function(IhateGayPeople)
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+local Mouse = game.Players.LocalPlayer:GetMouse()
+local CamlockState = true
+local Prediction = 0.163
+local HorizontalPrediction = 0.1760773
+local VerticalPrediction = 0.160692
+local XPrediction = 0.176073
+local YPrediction = 0.167092
+local Smoothness = 0.1-- Adjust this value for smoother or faster camera movement 
+local Locked = true
+getgenv().Key = "q"
+
+function FindNearestEnemy()
+    local ClosestDistance, ClosestPlayer = math.huge, nil
+    local CenterPosition =
+        Vector2.new(
+        game:GetService("GuiService"):GetScreenResolution().X / 2,
+        game:GetService("GuiService"):GetScreenResolution().Y / 2
+    )
+
+    for _, Player in ipairs(game:GetService("Players"):GetPlayers()) do
+        if Player ~= LocalPlayer then
+            local Character = Player.Character
+            if Character and Character:FindFirstChild("HumanoidRootPart") and Character.Humanoid.Health > 0 then
+                local Position, IsVisibleOnViewport =
+                    game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(Character.HumanoidRootPart.Position)
+
+                if IsVisibleOnViewport then
+                    local Distance = (CenterPosition - Vector2.new(Position.X, Position.Y)).Magnitude
+                    if Distance < ClosestDistance then
+                        ClosestPlayer = Character.HumanoidRootPart
+                        ClosestDistance = Distance
+                    end
+                end
+            end
+        end
+    end
+
+    return ClosestPlayer
+end
+
+local enemy = nil
+
+-- Function to smoothly aim the camera at the nearest enemy's HumanoidRootPart with prediction values
+RunService.Heartbeat:Connect(function()
+    if CamlockState == true then
+        if enemy then
+            local camera = workspace.CurrentCamera
+            local targetPosition = enemy.Position + enemy.Velocity * Prediction
+            targetPosition = Vector3.new(targetPosition.X + XPrediction, targetPosition.Y + YPrediction, targetPosition.Z)
+            
+            -- Interpolate between the current camera position and the target position
+            local currentPosition = camera.CFrame.Position
+            local newPosition = currentPosition:Lerp(targetPosition, Smoothness)
+            
+            camera.CFrame = CFrame.new(newPosition, targetPosition)
+        end
+    end
+end)
+
+Mouse.KeyDown:Connect(function(k)    
+    if k == getgenv().Key then    
+            Locked = not Locked    
+            if Locked then    
+                enemy = FindNearestEnemy()
+                CamlockState = true
+             else    
+                if enemy ~= nil then    
+                    enemy = nil    
+                    CamlockState = false
+                end    
+            end    
+    end    
+ end)
+
+local BladLock = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Logo = Instance.new("ImageLabel")
+local TextButton = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+
+--Properties:
+
+BladLock.Name = "BlackGuy"
+BladLock.Parent = game.CoreGui
+BladLock.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = BladLock
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.133798108, 0, 0.20107238, 0)
+Frame.Size = UDim2.new(0, 80, 0, 70)
+Frame.Active = true
+Frame.Draggable = true
+
+local function TopContainer()
+    Frame.Position = UDim2.new(0.5, -Frame.AbsoluteSize.X / 2, 0, -Frame.AbsoluteSize.Y / 2)
+end
+
+TopContainer()
+Frame:GetPropertyChangedSignal("AbsoluteSize"):Connect(TopContainer)
+
+UICorner.Parent = Frame
+
+Logo.Name = "Logo"
+Logo.Parent = Frame
+Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Logo.BackgroundTransparency = 5.000
+Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Logo.BorderSizePixel = 0
+Logo.Position = UDim2.new(0.326732665, 0, 0, 0)
+Logo.Size = UDim2.new(0, 80, 0, 60)
+Logo.Image = "rbxassetid://"
+Logo.ImageTransparency = 0.200
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 5.000
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.0792079195, 0, 0.18571429, 0)
+TextButton.Size = UDim2.new(0, 70, 0, 50)
+TextButton.Font = Enum.Font.SourceSansSemibold
+TextButton.Text = "Rx Camlock"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 24.000
+TextButton.TextWrapped = true
+local state = true
+TextButton.MouseButton1Click:Connect(
+    function()
+        state = not state
+        if not state then
+            TextButton.Text = "Rx Cam On"
+            CamlockState = true
+            enemy = FindNearestEnemy()
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Rx Camlock",
+    Text = "Locking To"
+
+})
+        else
+            TextButton.Text = "Rx Cam Off"
+            CamlockState = false
+            enemy = nil
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Rx Camlock";
+    Text = "Unlocked";
+    Icon = "rbxassetid://6864978825";
+})
+        end
+    end
+)
+
+UICorner_2.Parent = TextButton
+Frame.Active = true
+Frame.Draggable = true
+     end)
+
+testSection:AddButton("Rxempi streamable", function(IhateGayPeople)
+getgenv().Silent = {
+    Settings = {
+        Enabled = true,
+        AimPart = "HumanoidRootPart",
+        Prediction = 0.1485436,
+        WallCheck = true,
+        Visualize = true,
+        AutoPrediction = true,
+    },
+    FOV = {
+        Enabled = true,
+        Size = 150,
+        Filled = false,
+        Thickness = 0,
+        Transparency = 0,
+        Color = Color3.fromRGB(0,0,0),
+    },
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CyberPlaysYT/Aura-x-update/main/Aura%20x%20updated", true))() local FillColor = Color3.fromRGB(175,25,255)
+local DepthMode = "AlwaysOnTop"
+local FillTransparency = 0.5
+local OutlineColor = Color3.fromRGB(255,255,255)
+local OutlineTransparency = 0
+
+local CoreGui = game:FindService("CoreGui")
+local Players = game:FindService("Players")
+local lp = Players.LocalPlayer
+local connections = {}
+
+local Storage = Instance.new("Folder")
+Storage.Parent = CoreGui
+Storage.Name = "Highlight_Storage"
+
+local function Highlight(plr)
+    local Highlight = Instance.new("Highlight")
+    Highlight.Name = plr.Name
+    Highlight.FillColor = FillColor
+    Highlight.DepthMode = DepthMode
+    Highlight.FillTransparency = FillTransparency
+    Highlight.OutlineColor = OutlineColor
+    Highlight.OutlineTransparency = 0
+    Highlight.Parent = Storage
+    
+    local plrchar = plr.Character
+    if plrchar then
+        Highlight.Adornee = plrchar
+    end
+
+    connections[plr] = plr.CharacterAdded:Connect(function(char)
+        Highlight.Adornee = char
+    end)
+end
+
+Players.PlayerAdded:Connect(Highlight)
+for i,v in next, Players:GetPlayers() do
+    Highlight(v)
+end
+
+Players.PlayerRemoving:Connect(function(plr)
+    local plrname = plr.Name
+    if Storage[plrname] then
+        Storage[plrname]:Destroy()
+    end
+    if connections[plr] then
+        connections[plr]:Disconnect()
+    end
+end)
+     end) 
+testSection:AddButton("fps unlocker", function(IhateGayPeople)
+-- Made by RIP#6666
+_G.Settings = {
+    Players = {
+        ["Ignore Me"] = true, -- Ignore your Character
+        ["Ignore Others"] = true -- Ignore other Characters
+    },
+    Meshes = {
+        Destroy = false, -- Destroy Meshes
+        LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+    },
+    Images = {
+        Invisible = true, -- Invisible Images
+        LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+        Destroy = false, -- Destroy Images
+    },
+    Other = {
+        ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
+        ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+        ["No Explosions"] = true, -- Makes Explosion's invisible
+        ["No Clothes"] = true, -- Removes Clothing from the game
+        ["Low Water Graphics"] = true, -- Removes Water Quality
+        ["No Shadows"] = true, -- Remove Shadows
+        ["Low Rendering"] = true, -- Lower Rendering
+        ["Low Quality Parts"] = true -- Lower quality parts
+    }
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))()
+     end) 
+
+testSection:AddButton("fps unlocker", function(IhateGayPeople)
+for i,v in next, (workspace:GetDescendants()) do
+ if v:IsA("Part") then v.Material = Enum.Material.SmoothPlastic
+ end
+ end
+     end) 
+local testSection = AimingTab:CreateSector("CamLock", "right")
+testSection:AddButton("bate wait 8sec", function(IhateGayPeople)
+local player = game.Players.LocalPlayer
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+OrionLib:MakeNotification({
+	Name = "aimboted by Rxempi 💎",
+	Content = "aimboted by Rxempi UwU💅",
+	Image = "rbxassetid://4483345998",
+	Time = 7
+})
+
+--[[
+Title = <string> - The title of the notification.
+Content = <string> - The content of the notification.
+Image = <string> - The icon of the notification.
+Time = <number> - The duration of the notfication.
+]]
+
+-- By ezterminals on discord/Tiktok Give credits or raided.
+-- Beta, You may think this is bad, But Test it.
+-- Version:TerminalWare V7
+-- Change Sets if you like.
+-- Sets for ping 100 - 0
+-- 3%534:8;@“#
+-- Any Copy Of This Script Will be taken down. And ACCOUNT suspended.
+-- .gg/8yYZc4CHHp
+-- If you see the owner change at any point it will be me
+-- This is the original script and it always will be.
+-- Coped, Ezterminals on TikTok follow me.
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Creatingtesting/BateTargetAim/main/TargetAimByezterminals/And/hauntedyards_"))()
+     end) 
+
+testSection:AddButton("Mxxyc", function(IhateGayPeople)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CompYay56/Mxxyc-Business-Properties/main/Mxxyc%20Property%20Obf"))()
+     end) 

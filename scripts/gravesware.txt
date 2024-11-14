@@ -1,0 +1,4 @@
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/RRX4496/XaxaNotifications/main/NotifiyLibrary"))();
+
+
+game.StarterGui:SetCore("SendNotification", {

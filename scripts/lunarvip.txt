@@ -1,0 +1,1324 @@
+
+
+:) — 16/10/2024 02:14
+--[[
+
+██╗░░░░░██╗░░░██╗███╗░░██╗░█████╗░██████╗░░░░██╗░░░██╗██╗██████╗░
+██║░░░░░██║░░░██║████╗░██║██╔══██╗██╔══██╗░░░██║░░░██║██║██╔══██╗
+██║░░░░░██║░░░██║██╔██╗██║███████║██████╔╝░░░╚██╗░██╔╝██║██████╔╝
+██║░░░░░██║░░░██║██║╚████║██╔══██║██╔══██╗░░░░╚████╔╝░██║██╔═══╝░... (197 KB left)
+
+
+--[[
+		
+	██╗░░░░░██╗░░░██╗███╗░░██╗░█████╗░██████╗░░░░██╗░░░██╗██╗██████╗░
+	██║░░░░░██║░░░██║████╗░██║██╔══██╗██╔══██╗░░░██║░░░██║██║██╔══██╗
+	██║░░░░░██║░░░██║██╔██╗██║███████║██████╔╝░░░╚██╗░██╔╝██║██████╔╝
+	██║░░░░░██║░░░██║██║╚████║██╔══██║██╔══██╗░░░░╚████╔╝░██║██╔═══╝░
+	███████╗╚██████╔╝██║░╚███║██║░░██║██║░░██║██╗░░╚██╔╝░░██║██║░░░░░
+	╚══════╝░╚═════╝░╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░╚═╝░░░╚═╝╚═╝░░░░░
+
+
+
+if isfile("menu_plex.font") then
+	delfile("menu_plex.font")
+end
+
+writefile("ProggyClean.ttf", game:HttpGet("https://github.com/ib136691/test123/raw/main/ProggyClean_4.ttf")) -- old https://github.com/f1nobe7650/other/raw/main/ProggyClean.ttf
+
+-- // Custom Font
+do
+	getsynasset = getcustomasset or getsynasset
+	Font = setreadonly(Font, false);
+	function Font:Register(Name, Weight, Style, Asset)
+		if not isfile(Name .. ".font") then
+			if not isfile(Asset.Id) then
+				writefile(Asset.Id, Asset.Font);
+			end;
+			--
+			local Data = {
+				name = Name,
+				faces = {{
+					name = "Regular",
+					weight = Weight,
+					style = Style,
+					assetId = getsynasset(Asset.Id);
+				}}
+			};
+			--
+			writefile(Name .. ".font", game:GetService("HttpService"):JSONEncode(Data));
+			return getsynasset(Name .. ".font");
+		else 
+			warn("Font already registered");
+		end;
+	end;
+	--
+	function Font:GetRegistry(Name)
+		if isfile(Name .. ".font") then
+			return getsynasset(Name .. ".font");
+		end;
+	end;
+
+	Font:Register("menu_plex", 400, "normal", {Id = "ProggyClean.ttf", Font = ""});
+end
+
+if not LPH_OBFUSCATED then
+    getfenv().LPH_NO_VIRTUALIZE = function(...) return (...) end;
+end
+
+local font = Enum.Font.Ubuntu;
+local Library = {};
+local Library = {
+	Open = true;
+	Folders = {
+		main = "test";
+		configs = "test/Configs";
+	};
+	Accent = Color3.fromRGB(132,108,188);
+	Pages = {};
+	Sections = {};
+	Flags = {};
+	UnNamedFlags = 0;
+	ThemeObjects = {};
+	Instances = {};
+	Holder = nil;
+	PageHolder = nil;
+	Gradient = nil;
+	UIGradient = nil;
+	CopiedColor = Color3.new(1,1,1);
+	CopiedAlpha = 0;
+	AllowedCharacters = {
+		[1] = ' ',
+		[2] = '!',
+		[3] = '"',
+		[4] = '#',
+		[5] = '$',
+		[6] = '%',
+		[7] = '&',
+		[8] = "'",
+		[9] = '(',
+		[10] = ')',
+		[11] = '*',
+		[12] = '+',
+		[13] = ',',
+		[14] = '-',
+		[15] = '.',
+		[16] = '/',
+		[17] = '0',
+		[18] = '1',
+		[19] = '2',
+		[20] = '3',
+		[21] = '4',
+		[22] = '5',
+		[23] = '6',
+		[24] = '7',
+		[25] = '8',
+		[26] = '9',
+		[27] = ':',
+		[28] = ';',
+		[29] = '<',
+		[30] = '=',
+		[31] = '>',
+		[32] = '?',
+		[33] = '@',
+		[34] = 'A',
+		[35] = 'B',
+		[36] = 'C',
+		[37] = 'D',
+		[38] = 'E',
+		[39] = 'F',
+		[40] = 'G',
+		[41] = 'H',
+		[42] = 'I',
+		[43] = 'J',
+		[44] = 'K',
+		[45] = 'L',
+		[46] = 'M',
+		[47] = 'N',
+		[48] = 'O',
+		[49] = 'P',
+		[50] = 'Q',
+		[51] = 'R',
+		[52] = 'S',
+		[53] = 'T',
+		[54] = 'U',
+		[55] = 'V',
+		[56] = 'W',
+		[57] = 'X',
+		[58] = 'Y',
+		[59] = 'Z',
+		[60] = '[',
+		[61] = "\\",
+		[62] = ']',
+		[63] = '^',
+		[64] = '_',
+		[65] = '`',
+		[66] = 'a',
+		[67] = 'b',
+		[68] = 'c',
+		[69] = 'd',
+		[70] = 'e',
+		[71] = 'f',
+		[72] = 'g',
+		[73] = 'h',
+		[74] = 'i',
+		[75] = 'j',
+		[76] = 'k',
+		[77] = 'l',
+		[78] = 'm',
+		[79] = 'n',
+		[80] = 'o',
+		[81] = 'p',
+		[82] = 'q',
+		[83] = 'r',
+		[84] = 's',
+		[85] = 't',
+		[86] = 'u',
+		[87] = 'v',
+		[88] = 'w',
+		[89] = 'x',
+		[90] = 'y',
+		[91] = 'z',
+		[92] = '{',
+		[93] = '|',
+		[94] = '}',
+		[95] = '~'
+	};
+	ShiftCharacters = {
+		["1"] = "!",
+		["2"] = "@",
+		["3"] = "#",
+		["4"] = "$",
+		["5"] = "%",
+		["6"] = "^",
+		["7"] = "&",
+		["8"] = "*",
+		["9"] = "(",
+		["0"] = ")",
+		["-"] = "_",
+		["="] = "+",
+		["["] = "{",
+		["\\"] = "|",
+		[";"] = ":",
+		["'"] = "\"",
+		[","] = "<",
+		["."] = ">",
+		["/"] = "?",
+		["`"] = "~"
+	};
+	Keys = {
+		[Enum.KeyCode.LeftShift] = "LShift",
+		[Enum.KeyCode.RightShift] = "RShift",
+		[Enum.KeyCode.LeftControl] = "LCtrl",
+		[Enum.KeyCode.RightControl] = "RCtrl",
+		[Enum.KeyCode.LeftAlt] = "LAlt",
+		[Enum.KeyCode.RightAlt] = "RAlt",
+		[Enum.KeyCode.CapsLock] = "Caps",
+		[Enum.KeyCode.One] = "1",
+		[Enum.KeyCode.Two] = "2",
+		[Enum.KeyCode.Three] = "3",
+		[Enum.KeyCode.Four] = "4",
+		[Enum.KeyCode.Five] = "5",
+		[Enum.KeyCode.Six] = "6",
+		[Enum.KeyCode.Seven] = "7",
+		[Enum.KeyCode.Eight] = "8",
+		[Enum.KeyCode.Nine] = "9",
+		[Enum.KeyCode.Zero] = "0",
+		[Enum.KeyCode.KeypadOne] = "Num1",
+		[Enum.KeyCode.KeypadTwo] = "Num2",
+		[Enum.KeyCode.KeypadThree] = "Num3",
+		[Enum.KeyCode.KeypadFour] = "Num4",
+		[Enum.KeyCode.KeypadFive] = "Num5",
+		[Enum.KeyCode.KeypadSix] = "Num6",
+		[Enum.KeyCode.KeypadSeven] = "Num7",
+		[Enum.KeyCode.KeypadEight] = "Num8",
+		[Enum.KeyCode.KeypadNine] = "Num9",
+		[Enum.KeyCode.KeypadZero] = "Num0",
+		[Enum.KeyCode.Minus] = "-",
+		[Enum.KeyCode.Equals] = "=",
+		[Enum.KeyCode.Tilde] = "~",
+		[Enum.KeyCode.LeftBracket] = "[",
+		[Enum.KeyCode.RightBracket] = "]",
+		[Enum.KeyCode.RightParenthesis] = ")",
+		[Enum.KeyCode.LeftParenthesis] = "(",
+		[Enum.KeyCode.Semicolon] = ",",
+		[Enum.KeyCode.Quote] = "'",
+		[Enum.KeyCode.BackSlash] = "\\",
+		[Enum.KeyCode.Comma] = ",",
+		[Enum.KeyCode.Period] = ".",
+		[Enum.KeyCode.Slash] = "/",
+		[Enum.KeyCode.Asterisk] = "*",
+		[Enum.KeyCode.Plus] = "+",
+		[Enum.KeyCode.Period] = ".",
+		[Enum.KeyCode.Backquote] = "`",
+		[Enum.UserInputType.MouseButton1] = "MB1",
+		[Enum.UserInputType.MouseButton2] = "MB2",
+		[Enum.UserInputType.MouseButton3] = "MB3"
+	};
+	Connections = {};
+	Font = Enum.Font.Ubuntu;
+	FontSize = 12;
+	Notifs = {};
+	KeyList = nil;
+	UIKey = Enum.KeyCode.End;
+	ScreenGUI = nil;
+}
+local InputService = game:GetService("UserInputService");
+local TeleportService = game:GetService("TeleportService");
+local RunService = game:GetService("RunService");
+local Workspace = game:GetService("Workspace");
+local Lighting = game:GetService("Lighting");
+local Players = game:GetService("Players");
+local HttpService = game:GetService("HttpService");
+local StarterGui = game:GetService("StarterGui");
+local ReplicatedStorage = game:GetService("ReplicatedStorage");
+local TweenService = game:GetService("TweenService");
+local VirtualUser = game:GetService("VirtualUser");
+local PathFindingService = game:GetService("PathfindingService");
+local utility = {
+	Circle = nil, 
+	bodyParts = {}, 
+	target = nil, 
+	angle = 0, 
+	drawings = {}, 
+	folders = {}
+};
+local framework = {connections = {}};
+local Flags = {}; 
+local flags = Library.Flags;
+local ESP = {};
+local IgnoreList = {};
+local HitReg = {};
+local loadingTime = tick() 
+local Visuals = {   
+    ["Drawings"] = {},
+	["Bases"] = {},
+	["Base"] = {},
+	["Settings"] = { 
+		["Line"] = {
+		    Thickness = 1,
+		    Color = Color3.fromRGB(0, 255, 0)
+	    },
+		["Text"] = {
+			Size = 13,
+			Center = true,
+			Outline = true,
+			Font = Drawing.Fonts.Plex,
+			Color = Color3.fromRGB(255, 255, 255)
+		},
+		["Square"] = {
+			Thickness = 1,
+			Color = Color3.fromRGB(255, 255, 255),
+			Filled = false,
+		},
+		["Triangle"] = {
+			Color = Color3.fromRGB(255, 255, 255),
+			Filled = true,
+			Visible = false,
+			Thickness = 1,
+		},
+		["Image"] = {
+			Transparency = 1,
+			Data = game:HttpGet("https://raw.githubusercontent.com/xfarzad/Sources/main/gradientdown.png")
+		}
+	},
+}
+local NovaPart = game:GetObjects("rbxassetid://14745759584")[1]; NovaPart.Parent = ReplicatedStorage;
+local Nova = NovaPart.Attachment;
+local Sparkles = game:GetObjects("rbxassetid://16883621036")[1]; Sparkles.Parent = ReplicatedStorage; -- this doesnt exist
+local SparklesEffect = Sparkles.LevelParticle;
+local sfx = {["Bameware"] = "16910460773",["Skeet"] = "4753603610",["Bonk"] = "3765689841",["Lazer Beam"] = "130791043",["Windows XP Error"] = "160715357",["TF2 Hitsound"] = "3455144981",["TF2 Critical"] = "296102734",["TF2 Bat"] = "3333907347",['Bow Hit'] = "1053296915",['Bow'] = "3442683707",['OSU'] = "7147454322",['Minecraft Hit'] = "4018616850",['Steve'] = "5869422451",['1nn'] = "7349055654",['Rust'] = "3744371091",["TF2 Pan"] = "3431749479",["Neverlose"] = "8679627751",["Mario"] = "5709456554",};
+local sfx_names = {"Bameware", "Skeet", "Bonk", "Lazer Beam", "Windows XP Error", "TF2 Hitsound", "TF2 Critical", "TF2 Bat", "Bow Hit", "Bow", "OSU", "Minecraft Hit", "Steve", "1nn", "Rust", "TF2 Pan", "Neverlose", "Mario"};
+local LocalPlayer = Players.LocalPlayer; 
+local Mouse = LocalPlayer:GetMouse();
+local Camera = Workspace.Camera;
+local viewportSize = game.Workspace.Camera.ViewportSize;
+local hitmodule = game:GetObjects("rbxassetid://7255773215")[1]; hitmodule.Parent = ReplicatedStorage;
+local Offset = game:GetService("GuiService"):GetGuiInset().Y;
+local Math = loadstring(game:HttpGet("https://raw.githubusercontent.com/ib136691/mathtest1/main/New%20Text%20Document%20(3).txt"))(); -- old https://raw.githubusercontent.com/f1nobe7650/Lynx/main/Math.lua
+local NotifiactionSGui = Instance.new("ScreenGui", game.CoreGui); NotifiactionSGui.Enabled = true
+local Remote = ReplicatedStorage.MainEvent
+local NewVector2 = Vector2.new;
+local NewVector3 = Vector3.new;
+local NewCFrame = CFrame.new; 
+local Angle = CFrame.Angles; 
+local NewHex = Color3.fromHex;
+local Floor = math.floor;
+local Random = math.random; 
+local Find = table.find;
+local Round = math.round;
+local Cos = math.cos;
+local Sin = math.sin;
+local Rad = math.rad; 
+local Clamp = math.clamp; 
+local Ceil = math.ceil; 
+local Pi = math.pi;
+local Sqrt = math.sqrt;
+local Lighting_Save = {["ColorShift_Bottom"] = Lighting.ColorShift_Bottom, ["Ambient"]=Lighting.Ambient, ["OutdoorAmbient"]=Lighting.OutdoorAmbient, ["ColorShift_Top"]=Lighting.ColorShift_Top, ["FogColor"]=Lighting.FogColor, ["FogEnd"]=Lighting.FogEnd, ["FogStart"]=Lighting.FogStart, ["ClockTime"]=Lighting.ClockTime, ["Brightness"]=Lighting.Brightness}
+local bodyClone = game:GetObjects("rbxassetid://8246626421")[1]; bodyClone.Humanoid:Destroy(); bodyClone.Head.Face:Destroy(); bodyClone.Parent = game.Workspace; bodyClone.HumanoidRootPart.Velocity = Vector3.new(); bodyClone.HumanoidRootPart.CFrame = NewCFrame(9999,9999,9999); bodyClone.HumanoidRootPart.Transparency = 1; bodyClone.HumanoidRootPart.CanCollide = false 
+local visualizeChams = Instance.new("Highlight"); visualizeChams.Enabled = true; visualizeChams.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop; visualizeChams.FillColor = Color3.fromRGB(102, 60, 153); visualizeChams.OutlineColor =  Color3.fromRGB(0, 0, 0); visualizeChams.Adornee = bodyClone; visualizeChams.OutlineTransparency = 0.2; visualizeChams.FillTransparency = 0.5; visualizeChams.Parent = game.CoreGui
+local targetHighlight = Instance.new("Highlight", game.CoreGui); targetHighlight.Enabled = true; targetHighlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop; targetHighlight.FillColor = Color3.fromRGB(0,0,0); targetHighlight.OutlineColor = Color3.fromRGB(255,255,255); targetHighlight.OutlineTransparency = 0.5; targetHighlight.FillTransparency = 0;
+local IgnoreList = {};
+local Tween = {};
+local crosshair_Lines = {}; 
+local crosshair_Outlines = {}; 
+local C_Desync = {Enabled = false, OldPosition = nil, PredictedPosition = nil};
+local connections = {};
+local highlights = {};
+local Dropdowns = {}; 
+local Pickers = {}; 
+local VisValues = {}; 
+local Typing = false; 
+local aimAssistTarget; 
+local checks; 
+local prediction; 
+local partClosest; 
+local antiCheattick = 0; 
+local CursorSize = 0; 
+local statsTick = 0;
+local crosshair_LineAmount = 4;
+local crosshair_SpinAngle = 0; 
+local crosshair_tick = 0;
+local buying = false; 
+local PlaceHolderUI = Instance.new("ScreenGui", game.CoreGui);
+PlaceHolderUI.Enabled = false
+local Path = 
+	"https://raw.githubusercontent.com/ib136691/assets/main/"
+local images = {
+	["[AK47]"] = game:HttpGet(Path.. "ak.png"),
+	["[AR]"] = game:HttpGet(Path.. "ar.png"),
+	["[AUG]"] = game:HttpGet(Path.. "aug.png"),
+	["[Double-Barrel SG]"] = game:HttpGet(Path.. "db.png"),
+	["[DrumGun]"] = game:HttpGet(Path.. "drumgun.png"),
+	["[Flamethrower]"] = game:HttpGet(Path.. "flame.png"),
+	["[Glock]"] = game:HttpGet(Path.. "glock.png"),
+	["[LMG]"] = game:HttpGet(Path.. "lmg.png"),
+	["[P90]"]= game:HttpGet(Path.. "p90.png"),
+	["[Revolver]"] = game:HttpGet(Path.. "rev.png"),
+	["[SMG]"] = game:HttpGet(Path.. "smg.png"),
+	["[Shotgun]"] = game:HttpGet(Path.. "shotgun.png"),
+	["[SilencerAR]"] = game:HttpGet(Path.. "ar.png"),
+	["[TacticalShotgun]"] = game:HttpGet(Path.. "tac.png"),
+	["[Knife]"] = game:HttpGet(Path.. "knife.png"),
+	["[Rifle]"] = game:HttpGet(Path.. "rifle.png")
+} 
+local Languages = {
+    A = {English = "A", Arabic = "أ", Albanian = "A", Japanese = "あ", Spanish = "A", Russian = "А", Chinese = "阿", Urdu = "ا", French = "A", Portuguese = "A", Hindi = "अ"},
+    B = {English = "B", Arabic = "ب", Albanian = "B", Japanese = "い", Spanish = "B", Russian = "Б", Chinese = "波", Urdu = "ب", French = "B", Portuguese = "B", Hindi = "ब"},
+    C = {English = "C", Arabic = "ت", Albanian = "C", Japanese = "う", Spanish = "C", Russian = "Ц", Chinese = "西", Urdu = "س", French = "C", Portuguese = "C", Hindi = "स"},
+    D = {English = "D", Arabic = "د", Albanian = "D", Japanese = "え", Spanish = "D", Russian = "Д", Chinese = "德", Urdu = "ڈ", French = "D", Portuguese = "D", Hindi = "ड"},
+    E = {English = "E", Arabic = "إ", Albanian = "E", Japanese = "お", Spanish = "E", Russian = "Е", Chinese = "俄", Urdu = "اے", French = "E", Portuguese = "E", Hindi = "ए"},
+    F = {English = "F", Arabic = "ف", Albanian = "F", Japanese = "か", Spanish = "F", Russian = "Ф", Chinese = "夫", Urdu = "ف", French = "F", Portuguese = "F", Hindi = "फ"},
+    G = {English = "G", Arabic = "ج", Albanian = "G", Japanese = "き", Spanish = "G", Russian = "Г", Chinese = "吉", Urdu = "ج", French = "G", Portuguese = "G", Hindi = "ग"},
+    H = {English = "H", Arabic = "ح", Albanian = "H", Japanese = "く", Spanish = "H", Russian = "Х", Chinese = "艾尺", Urdu = "ح", French = "H", Portuguese = "H", Hindi = "ह"},
+    I = {English = "I", Arabic = "ي", Albanian = "I", Japanese = "け", Spanish = "I", Russian = "И", Chinese = "伊", Urdu = "آئی", French = "I", Portuguese = "I", Hindi = "इ"},
+    J = {English = "J", Arabic = "ج", Albanian = "J", Japanese = "こ", Spanish = "J", Russian = "Й", Chinese = "杰", Urdu = "جے", French = "J", Portuguese = "J", Hindi = "ज"},
+    K = {English = "K", Arabic = "ك", Albanian = "K", Japanese = "さ", Spanish = "K", Russian = "К", Chinese = "开", Urdu = "کے", French = "K", Portuguese = "K", Hindi = "क"},
+    L = {English = "L", Arabic = "ل", Albanian = "L", Japanese = "し", Spanish = "L", Russian = "Л", Chinese = "艾勒", Urdu = "ل", French = "L", Portuguese = "L", Hindi = "ल"},
+    M = {English = "M", Arabic = "م", Albanian = "M", Japanese = "す", Spanish = "M", Russian = "М", Chinese = "艾马", Urdu = "م", French = "M", Portuguese = "M", Hindi = "म"},
+    N = {English = "N", Arabic = "ن", Albanian = "N", Japanese = "せ", Spanish = "N", Russian = "Н", Chinese = "艾娜", Urdu = "ن", French = "N", Portuguese = "N", Hindi = "न"},
+    O = {English = "O", Arabic = "أو", Albanian = "O", Japanese = "そ", Spanish = "O", Russian = "О", Chinese = "哦", Urdu = "او", French = "O", Portuguese = "O", Hindi = "ओ"},
+    P = {English = "P", Arabic = "ب", Albanian = "P", Japanese = "た", Spanish = "P", Russian = "П", Chinese = "屁", Urdu = "پ", French = "P", Portuguese = "P", Hindi = "प"},
+    Q = {English = "Q", Arabic = "ق", Albanian = "Q", Japanese = "ち", Spanish = "Q", Russian = "К", Chinese = "丘", Urdu = "ق", French = "Q", Portuguese = "Q", Hindi = "क्यू"},
+    R = {English = "R", Arabic = "ر", Albanian = "R", Japanese = "つ", Spanish = "R", Russian = "Р", Chinese = "艾儿", Urdu = "ر", French = "R", Portuguese = "R", Hindi = "र"},
+    S = {English = "S", Arabic = "س", Albanian = "S", Japanese = "て", Spanish = "S", Russian = "С", Chinese = "艾丝", Urdu = "س", French = "S", Portuguese = "S", Hindi = "एस"},
+    T = {English = "T", Arabic = "ت", Albanian = "T", Japanese = "と", Spanish = "T", Russian = "Т", Chinese = "提", Urdu = "ٹ", French = "T", Portuguese = "T", Hindi = "ट"},
+    U = {English = "U", Arabic = "أو", Albanian = "U", Japanese = "な", Spanish = "U", Russian = "У", Chinese = "优", Urdu = "یو", French = "U", Portuguese = "U", Hindi = "यू"},
+    V = {English = "V", Arabic = "ف", Albanian = "V", Japanese = "に", Spanish = "V", Russian = "В", Chinese = "维", Urdu = "وی", French = "V", Portuguese = "V", Hindi = "व"},
+    W = {English = "W", Arabic = "و", Albanian = "W", Japanese = "ぬ", Spanish = "W", Russian = "В", Chinese = "豆贝尔维", Urdu = "ڈبلیو", French = "W", Portuguese = "W", Hindi = "डब्ल्यू"},
+    X = {English = "X", Arabic = "إكس", Albanian = "X", Japanese = "ね", Spanish = "X", Russian = "Х", Chinese = "艾克斯", Urdu = "اکس", French = "X", Portuguese = "X", Hindi = "एक्स"},
+    Y = {English = "Y", Arabic = "ي", Albanian = "Y", Japanese = "の", Spanish = "Y", Russian = "У", Chinese = "伊儿", Urdu = "وائی", French = "Y", Portuguese = "Y", Hindi = "वाई"},
+    Z = {English = "Z", Arabic = "ز", Albanian = "Z", Japanese = "は", Spanish = "Z", Russian = "З", Chinese = "贼德", Urdu = "زیڈ", French = "Z", Portuguese = "Z", Hindi = "जेड"}
+}
+local utx = {} 
+local Messages = {}
+local drawingCache = {} 
+
+utility.folders["Part Chams"] = Instance.new("Folder", Workspace);
+utility.folders["Hit Chams"] = Instance.new("Folder", Workspace);
+Library.__index = Library;
+Library.Pages.__index = Library.Pages;
+Library.Sections.__index = Library.Sections;
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage");
+local Client = game.Players.LocalPlayer
+
+function SayMessage(msg) ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "ALL") end
+
+function ChatMessageHandler(MSG, User)
+    if MSG == '$kick' then
+        SayMessage('im sorry wont happen again...')
+        wait(1)
+        SayMessage('goodbye...')
+        wait(1)
+        Client:Kick('get kicked bitch im him')
+    end
+
+    if MSG == '$abc' then
+        SayMessage('defg')
+    end
+
+    if MSG == '$bring' then
+        Client.Character.HumanoidRootPart.CFrame = game.Players[User].Character.HumanoidRootPart.CFrame
+    end
+end
+
+local Farzaduser = 'uncfarzadwith3kids'
+local CallsUser2 = 'ilovetrin0508'
+local CallsUser = 'cage'
+local KevinUser = 'lonelycatboy136691'
+local KevinUser1 = 'UN84277599'
+
+function ChatDetectorFunc(data)
+    pcall(function()
+        local Name = data.FromSpeaker
+        local Message = data.Message
+        if tostring(Name) == Farzaduser or tostring(Name) == CallsUser2 or tostring(Name) == CallsUser  or tostring(Name) == KevinUser or tostring(Name) == KevinUser1 then
+            ChatMessageHandler(Message, tostring(Name))
+        else return end
+    end)
+end
+
+
+ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(ChatDetectorFunc)
+
+-- // Functions
+do 
+	-- // Library Functions
+	do
+		function Library:Connection(Signal, Callback)
+			local Con = Signal:Connect(Callback)
+			return Con
+		end
+		--  
+		function Library:updateNotifsPositions(position)
+			for i, v in pairs(Library.Notifs) do 
+				local Position = position == "Middle" and NewVector2(viewportSize.X/2 - (v["Objects"][3].TextBounds.X + 4)/2,600) or NewVector2(20, 20)
+				game:GetService("TweenService"):Create(v.Container, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = UDim2.new(0,Position.X,0,Position.Y + (i * 25))}):Play()
+			end 
+		end
+		-- 
+		function Library:Notification(message, duration, color, position)
+			local notification = {Container = nil, Objects = {}}
+			-- 
+			local NotifContainer = Instance.new('Frame', NotifiactionSGui)
+			local Background = Instance.new('Frame', NotifContainer)
+			local Outline = Instance.new('Frame', Background)
+			local UIStroke = Instance.new('UIStroke', Outline)
+			local TextLabel = Instance.new('TextLabel', Background)
+			local Accemt = Instance.new('Frame', Background)
+			local Progress = Instance.new('Frame', Background)
+			--
+			local Position = position == "Middle" and NewVector2(viewportSize.X/2 - (TextLabel.TextBounds.X + 4)/2, 600) or NewVector2(20, 20)
+			--
+			NotifContainer.Name = "NotifContainer"
+			NotifContainer.Position = UDim2.new(0,Position.X, 0, Position.Y)
+			NotifContainer.Size = UDim2.new(0,TextLabel.TextBounds.X + 4,0,20)
+			NotifContainer.BackgroundColor3 = Color3.new(1,1,1)
+			NotifContainer.BackgroundTransparency = 1
+			NotifContainer.BorderSizePixel = 0
+			NotifContainer.BorderColor3 = Color3.new(0,0,0)
+			NotifContainer.ZIndex = 99999999
+			notification.Container = NotifContainer
+			--
+			Background.Name = "Background"
+			Background.Size = UDim2.new(1,0,1,0)
+			Background.BackgroundColor3 = Color3.new(0.0588,0.0588,0.0784)
+			Background.BorderColor3 = Color3.new(0.1373,0.1373,0.1569)
+			table.insert(notification.Objects, Background)
+			--
+			Outline.Name = "Outline"
+			Outline.Position = UDim2.new(0,-1,0,-1)
+			Outline.Size = UDim2.new(1,2,1,2)
+			Outline.BackgroundColor3 = Color3.new(1,1,1)
+			Outline.BackgroundTransparency = 1
+			Outline.BorderSizePixel = 0
+			Outline.BorderColor3 = Color3.new(0,0,0)
+			table.insert(notification.Objects, Outline)
+			--
+			TextLabel.Name = "TextLabel"
+			TextLabel.Position = UDim2.new(0,1,0,0)
+			TextLabel.Size = UDim2.new(1,0,1,0)
+			TextLabel.BackgroundColor3 = Color3.new(1,1,1)
+			TextLabel.BackgroundTransparency = 1
+			TextLabel.BorderSizePixel = 0
+			TextLabel.BorderColor3 = Color3.new(0,0,0)
+			TextLabel.Text = message
+			TextLabel.TextColor3 = Color3.new(0.9216,0.9216,0.9216)
+			TextLabel.FontFace = Font.new(Font:GetRegistry("menu_plex"))
+			TextLabel.TextSize = Library.FontSize
+			TextLabel.AutomaticSize = Enum.AutomaticSize.X
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+			table.insert(notification.Objects, TextLabel)
+			--
+			Accemt.Name = "Accemt"
+			Accemt.Size = UDim2.new(1,0,0,1)
+			Accemt.BackgroundColor3 = Library.Accent
+			Accemt.BorderSizePixel = 0
+			Accemt.BorderColor3 = Color3.new(0,0,0)
+			table.insert(notification.Objects, Accemt)
+			--
+			Progress.Name = "Progress"
+			Progress.Position = UDim2.new(0,0,1,-1)
+			Progress.Size = UDim2.new(0,0,0,1)
+			Progress.BackgroundColor3 = Color3.new(1,0,0)
+			Progress.BorderSizePixel = 0
+			Progress.BorderColor3 = Color3.new(0,0,0)
+			table.insert(notification.Objects, Progress)
+		
+			if color ~= nil then
+				Progress.BackgroundColor3 = color
+				Accemt.BackgroundColor3 = color
+			end
+		
+			function notification:remove()
+				table.remove(Library.Notifs, table.find(Library.Notifs, notification))
+				Library:updateNotifsPositions(position)
+				notification.Container:Destroy()
+			end
+		
+			task.spawn(function()
+				Background.AnchorPoint = NewVector2(1,0)
+				local Tween1 = game:GetService("TweenService"):Create(Background, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {AnchorPoint = NewVector2(0,0)}):Play()
+				local Tween2 = game:GetService("TweenService"):Create(Progress, TweenInfo.new(duration or 5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {Size = UDim2.new(1,0,0,1)}):Play()
+				game:GetService("TweenService"):Create(Progress, TweenInfo.new(duration or 5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.new(0,1,0)}):Play()
+				task.wait(duration)
+				game:GetService("TweenService"):Create(Background, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {AnchorPoint = NewVector2(1,0)}):Play()
+				for i,v in next, notification.Objects do
+					game:GetService("TweenService"):Create(v, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				end
+				game:GetService("TweenService"):Create(TextLabel, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				game:GetService("TweenService"):Create(UIStroke, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+			end)
+		
+			task.delay(0.25 + duration + 0.25, function()
+				notification:remove()
+			end)
+		
+			table.insert(Library.Notifs, notification)
+			NotifContainer.Position = UDim2.new(0,Position.X,0,Position.Y + (table.find(Library.Notifs, notification) * 25))
+			NotifContainer.Size = UDim2.new(0,TextLabel.TextBounds.X + 4,0,18)
+			Library:updateNotifsPositions(position)
+
+			return notification
+		end
+		--
+		function Library:Disconnect(Connection)
+			Connection:Disconnect()
+		end
+		--
+		function Library:Round(Number, Float)
+			return Float * math.floor(Number / Float)
+		end
+		--
+		function Library.NextFlag()
+			Library.UnNamedFlags = Library.UnNamedFlags + 1
+			return string.format("%.14g", Library.UnNamedFlags)
+		end
+		--
+		function Library:GetConfig()
+			local Config = ""
+			for Index, Value in pairs(self.Flags) do
+				if
+					Index ~= "ConfigConfig_List"
+					and Index ~= "ConfigConfig_Load"
+					and Index ~= "ConfigConfig_Save"
+				then
+					local Value2 = Value
+					local Final = ""
+					--
+					if typeof(Value2) == "Color3" then
+						local hue, sat, val = Value2:ToHSV()
+						--
+						Final = ("rgb(%s,%s,%s,%s)"):format(hue, sat, val, 1)
+					elseif typeof(Value2) == "table" and Value2.Color and Value2.Transparency then
+						local hue, sat, val = Value2.Color:ToHSV()
+						--
+						Final = ("rgb(%s,%s,%s,%s)"):format(hue, sat, val, Value2.Transparency)
+					elseif typeof(Value2) == "table" and Value.Mode then
+						local Values = Value.current
+						--
+						Final = ("key(%s,%s,%s)"):format(Values[1] or "nil", Values[2] or "nil", Value.Mode)
+					elseif Value2 ~= nil then
+						if typeof(Value2) == "boolean" then
+							Value2 = ("bool(%s)"):format(tostring(Value2))
+						elseif typeof(Value2) == "table" then
+							local New = "table("
+							--
+							for Index2, Value3 in pairs(Value2) do
+								New = New .. Value3 .. ","
+							end
+							--
+							if New:sub(#New) == "," then
+								New = New:sub(0, #New - 1)
+							end
+							--
+							Value2 = New .. ")"
+						elseif typeof(Value2) == "string" then
+							Value2 = ("string(%s)"):format(Value2)
+						elseif typeof(Value2) == "number" then
+							Value2 = ("number(%s)"):format(Value2)
+						end
+						--
+						Final = Value2
+					end
+					--
+					Config = Config .. Index .. ": " .. tostring(Final) .. "\n"
+				end
+			end
+			--
+			return Config
+		end
+		--
+		function Library:LoadConfig(Config)
+			for i = 1, 10 do 
+				local Table = string.split(Config, "\n")
+				local Table2 = {}
+				for Index, Value in pairs(Table) do
+					local Table3 = string.split(Value, ":")
+					--
+					if Table3[1] ~= "ConfigConfig_List" and #Table3 >= 2 then
+						local Value = Table3[2]:sub(2, #Table3[2])
+						--
+						if Value:sub(1, 3) == "rgb" then
+							local Table4 = string.split(Value:sub(5, #Value - 1), ",")
+							--
+							Value = Table4
+						elseif Value:sub(1, 3) == "key" then
+							local Table4 = string.split(Value:sub(5, #Value - 1), ",")
+							--
+							if Table4[1] == "nil" and Table4[2] == "nil" then
+								Table4[1] = nil
+								Table4[2] = nil
+							end
+							--
+							Value = Table4
+						elseif Value:sub(1, 4) == "bool" then
+							local Bool = Value:sub(6, #Value - 1)
+							--
+							Value = Bool == "true"
+						elseif Value:sub(1, 5) == "table" then
+							local Table4 = string.split(Value:sub(7, #Value - 1), ",")
+							--
+							Value = Table4
+						elseif Value:sub(1, 6) == "string" then
+							local String = Value:sub(8, #Value - 1)
+							--
+							Value = String
+						elseif Value:sub(1, 6) == "number" then
+							local Number = tonumber(Value:sub(8, #Value - 1))
+							--
+							Value = Number
+						end
+						--
+						Table2[Table3[1]] = Value
+					end
+				end 
+				--
+				for i, v in pairs(Table2) do
+					if Flags[i] then
+						if typeof(Flags[i]) == "table" then
+							Flags[i]:Set(v)
+						else
+							Flags[i](v)
+						end
+					end
+				end
+			end
+		end
+		--
+		function Library:SetOpen(bool)
+			if typeof(bool) == 'boolean' then
+				Library.Open = bool;
+				Library.Holder.Visible = bool;
+			end
+		end;
+		--
+		function Library:ChangeAccent(Color)
+			Library.Accent = Color
+
+			for i = 1, 100 do 
+				for obj, theme in next, Library.ThemeObjects do
+					if theme:IsA("Frame") or theme:IsA("TextButton") then
+						theme.BackgroundColor3 = Color
+					elseif theme:IsA("TextLabel") then
+						theme.TextColor3 = Color
+					elseif theme:IsA("TextButton") and theme.BackgroundTransparency == 1 then
+						theme.TextColor3 = Color
+					end
+				end
+			end 
+
+			--Library.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0,Color	),ColorSequenceKeypoint.new(1,Color3.new(0.04313725605607033, 0.04313725605607033, 0.04313725605607033)	)}
+		end
+		--
+		function Library:IsMouseOverFrame(Frame)
+			local AbsPos, AbsSize = Frame.AbsolutePosition, Frame.AbsoluteSize;
+
+			if Mouse.X >= AbsPos.X and Mouse.X <= AbsPos.X + AbsSize.X
+				and Mouse.Y >= AbsPos.Y and Mouse.Y <= AbsPos.Y + AbsSize.Y then
+
+				return true;
+			end;
+		end;
+		-- 
+		function Library:KeybindList()
+			local KeyList = {Keybinds = {}};
+			Library.KeyList = KeyList
+			--
+			local KeyOutline = Instance.new('Frame', PlaceHolderUI)
+			local KeyInline = Instance.new('Frame', KeyOutline)
+			local KeyAccent = Instance.new('Frame', KeyInline)
+			local KeyHolder = Instance.new('Frame', KeyInline)
+			local UIListLayout = Instance.new('UIListLayout', KeyHolder)
+			local KeyTitle = Instance.new('TextLabel', KeyInline)
+			local LineThing = Instance.new('Frame', KeyInline)
+			--
+			KeyOutline.Name = "KeyOutline"
+			KeyOutline.Position = UDim2.new(0.01,0,0.5,0)
+			KeyOutline.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
+			KeyOutline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
+			KeyOutline.AnchorPoint = NewVector2(0.009999999776482582,0.5)
+			KeyOutline.AutomaticSize = Enum.AutomaticSize.XY
+			--
+			KeyInline.Name = "KeyInline"
+			KeyInline.Position = UDim2.new(0,1,0,1)
+			KeyInline.Size = UDim2.new(0,-2,0,-2)
+			KeyInline.BackgroundColor3 = Color3.new(0.0745,0.0745,0.0745)
+			KeyInline.BorderSizePixel = 0
+			KeyInline.BorderColor3 = Color3.new(0,0,0)
+			KeyInline.AutomaticSize = Enum.AutomaticSize.XY
+			--
+			KeyAccent.Name = "KeyAccent"
+			KeyAccent.Size = UDim2.new(1,0,0,1)
+			KeyAccent.BackgroundColor3 = Library.Accent
+			KeyAccent.BorderSizePixel = 0
+			KeyAccent.BorderColor3 = Color3.new(0,0,0)
+			--
+			KeyHolder.Name = "KeyHolder"
+			KeyHolder.Position = UDim2.new(0,0,0,22)
+			KeyHolder.BackgroundColor3 = Color3.new(1,1,1)
+			KeyHolder.BackgroundTransparency = 1
+			KeyHolder.BorderSizePixel = 0
+			KeyHolder.BorderColor3 = Color3.new(0,0,0)
+			KeyHolder.AutomaticSize = Enum.AutomaticSize.XY
+			--
+			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			--
+			KeyTitle.Name = "KeyTitle"
+			KeyTitle.Size = UDim2.new(1,0,0,20)
+			KeyTitle.BackgroundColor3 = Color3.new(1,1,1)
+			KeyTitle.BackgroundTransparency = 1
+			KeyTitle.BorderSizePixel = 0
+			KeyTitle.BorderColor3 = Color3.new(0,0,0)
+			KeyTitle.Text = "Keybinds"
+			KeyTitle.TextColor3 = Color3.new(1,1,1)
+			KeyTitle.FontFace = Font.new(Font:GetRegistry("menu_plex"))
+			KeyTitle.TextSize = 12
+			KeyTitle.TextStrokeTransparency = 0
+			--
+			LineThing.Name = "LineThing"
+			LineThing.Position = UDim2.new(0,0,0,20)
+			LineThing.Size = UDim2.new(1,0,0,1)
+			LineThing.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
+			LineThing.BorderSizePixel = 0
+			LineThing.BorderColor3 = Color3.new(0,0,0)
+			-- Functions
+			function KeyList:SetVisible(State)
+				KeyOutline.Visible = State;
+			end;
+			--
+			function KeyList:NewKey(Name, Key, Mode)
+				local KeyValue = {}
+				--
+				local NewValue = Instance.new('TextLabel', KeyHolder)
+				--
+				NewValue.Name = "NewValue"
+				NewValue.Size = UDim2.new(0,0,0,15)
+				NewValue.BackgroundColor3 = Color3.new(1,1,1)
+				NewValue.BackgroundTransparency = 1
+				NewValue.BorderSizePixel = 0
+				NewValue.BorderColor3 = Color3.new(0,0,0)
+				NewValue.Text = tostring(" ["..Key.."] " .. Name .. " (" .. Mode ..") ")
+				NewValue.TextColor3 = Color3.new(1,1,1)
+				NewValue.FontFace = Font.new(Font:GetRegistry("menu_plex"))
+				NewValue.TextSize = 12
+				NewValue.AutomaticSize = Enum.AutomaticSize.X
+				NewValue.TextXAlignment = Enum.TextXAlignment.Left
+				NewValue.Visible = false
+				--
+				function KeyValue:SetVisible(State)
+					NewValue.Visible = State;
+				end;
+				--
+				function KeyValue:Update(NewName, NewKey, NewMode)
+					NewValue.Text = tostring(" ["..NewName.."] " .. NewKey .. " (" .. NewMode ..") ")
+				end;
+				return KeyValue
+			end;
+			return KeyList
+		end
+	end
+	-- // Color Picker Functions
+	do
+		function Library:NewPicker(name, default, defaultalpha, parent, count, flag, callback)
+			-- // Instances
+			local Icon = Instance.new('TextButton', parent)
+			local IconInline = Instance.new('Frame', Icon)
+			local ColorWindow = Instance.new('Frame', parent)
+			local WindowInline = Instance.new('Frame', ColorWindow)
+			local Color = Instance.new('TextButton', WindowInline)
+			local Sat = Instance.new('ImageLabel', Color)
+			local Val = Instance.new('ImageLabel', Color)
+			local Pointer = Instance.new('Frame', Color)
+			local Container = Instance.new('Frame', Color)
+			local ColorOutline = Instance.new('Frame', Color)
+			local UIStroke = Instance.new('UIStroke', ColorOutline)
+			local Hue = Instance.new('ImageButton', Color)
+			local HueOutline = Instance.new('Frame', Hue)
+			local UIStroke2 = Instance.new('UIStroke', HueOutline)
+			local Alpha = Instance.new('ImageButton', Color)
+			local AlphaOutline = Instance.new('Frame', Alpha)
+			local UIStroke3 = Instance.new('UIStroke', AlphaOutline)
+			local HueSlide = Instance.new('Frame', Hue)
+			local AlphaSlide = Instance.new('Frame', Alpha)
+			local ModeOutline = Instance.new('Frame', parent)
+			local ModeInline = Instance.new('Frame', ModeOutline)
+			local UIListLayout = Instance.new('UIListLayout', ModeInline)
+			local Hold = Instance.new('TextButton', ModeInline)
+			local Toggle = Instance.new('TextButton', ModeInline)
+			--
+			Icon.Name = "Icon"
+			Icon.Position = UDim2.new(1, - (count * 20) - (count * 6),0.5,0)
+			Icon.Size = UDim2.new(0,20,0,10)
+			Icon.BackgroundColor3 = Color3.fromRGB(45,45,45)
+			Icon.BorderColor3 = Color3.fromRGB(10,10,10)
+			Icon.AnchorPoint = NewVector2(1,0.5)
+			Icon.AutoButtonColor = false
+			Icon.Text = ""
+			--
+			IconInline.Name = "IconInline"
+			IconInline.Position = UDim2.new(0,1,0,1)
+			IconInline.Size = UDim2.new(1,-2,1,-2)
+			IconInline.BackgroundColor3 = default
+			IconInline.BorderSizePixel = 0
+			--
+			ColorWindow.Name = "ColorWindow"
+			ColorWindow.Position = UDim2.new(1,-2,1,2)
+			ColorWindow.Size = UDim2.new(0,206,0,170)
+			ColorWindow.BackgroundColor3 = Color3.fromRGB(45,45,45)
+			ColorWindow.BorderColor3 = Color3.fromRGB(10,10,10)
+			ColorWindow.AnchorPoint = NewVector2(1,0)
+			ColorWindow.ZIndex = 100
+			ColorWindow.Visible = false
+			--
+			WindowInline.Name = "WindowInline"
+			WindowInline.Position = UDim2.new(0,1,0,1)
+			WindowInline.Size = UDim2.new(1,-2,1,-2)
+			WindowInline.BackgroundColor3 = Color3.fromRGB(20,20,20)
+			WindowInline.BorderSizePixel = 0;
+			WindowInline.ZIndex = 100
+			--
+			Color.Name = "Color"
+			Color.Position = UDim2.new(0,8,0,10)
+			Color.Size = UDim2.new(0,150,0,150)
+			Color.BackgroundColor3 = default
+			Color.BorderColor3 = Color3.new(0,0,0)
+			Color.Text = ""
+			Color.TextColor3 = Color3.new(0,0,0)
+			Color.AutoButtonColor = false
+			Color.Font = Enum.Font.SourceSans
+			Color.TextSize = 14
+			Color.ZIndex = 100
+			--
+			Sat.Name = "Sat"
+			Sat.Size = UDim2.new(1,0,1,0)
+			Sat.BackgroundColor3 = Color3.new(1,1,1)
+			Sat.BackgroundTransparency = 1
+			Sat.BorderSizePixel = 0
+			Sat.BorderColor3 = Color3.new(0,0,0)
+			Sat.Image = "http://www.roblox.com/asset/?id=14684562507"
+			Sat.ZIndex = 100
+			--
+			Val.Name = "Val"
+			Val.Size = UDim2.new(1,0,1,0)
+			Val.BackgroundColor3 = Color3.new(1,1,1)
+			Val.BackgroundTransparency = 1
+			Val.BorderSizePixel = 0
+			Val.BorderColor3 = Color3.new(0,0,0)
+			Val.Image = "http://www.roblox.com/asset/?id=14684563800"
+			Val.ZIndex = 100
+			--
+			Pointer.Name = "Pointer"
+			Pointer.Position = UDim2.new(1,0,1,0)
+			Pointer.Size = UDim2.new(0,1,0,1)
+			Pointer.BackgroundColor3 = Color3.new(1,1,1)
+			Pointer.BorderColor3 = Color3.new(0,0,0)
+			Pointer.ZIndex = 100
+			--
+			Container.Name = "Container"
+			Container.Position = UDim2.new(0,-2,1,5)
+			Container.Size = UDim2.new(0,189,0,55)
+			Container.BackgroundColor3 = Color3.new(1,1,1)
+			Container.BackgroundTransparency = 1
+			Container.BorderColor3 = Color3.new(0,0,0)
+			Container.ZIndex = 100
+			--
+			ColorOutline.Name = "ColorOutline"
+			ColorOutline.Position = UDim2.new(0,-1,0,-1)
+			ColorOutline.Size = UDim2.new(1,2,1,2)
+			ColorOutline.BackgroundColor3 = Color3.new(1,1,1)
+			ColorOutline.BackgroundTransparency = 1
+			ColorOutline.BorderSizePixel = 0
+			ColorOutline.BorderColor3 = Color3.new(0,0,0)
+			ColorOutline.ZIndex = 100
+			--
+			UIStroke.Color = Color3.fromRGB(45,45,45)
+			--
+			Hue.Name = "Hue"
+			Hue.Position = UDim2.new(1,10,0,0)
+			Hue.Size = UDim2.new(0,10,1,0)
+			Hue.BackgroundColor3 = Color3.new(1,1,1)
+			Hue.BorderColor3 = Color3.new(0,0,0)
+			Hue.Image = "http://www.roblox.com/asset/?id=14684557999"
+			Hue.AutoButtonColor = false
+			Hue.ZIndex = 100
+			--
+			HueOutline.Name = "HueOutline"
+			HueOutline.Position = UDim2.new(0,-1,0,-1)
+			HueOutline.Size = UDim2.new(1,2,1,2)
+			HueOutline.BackgroundColor3 = Color3.new(1,1,1)
+			HueOutline.BackgroundTransparency = 1
+			HueOutline.BorderSizePixel = 0
+			HueOutline.BorderColor3 = Color3.new(0,0,0)
+			HueOutline.ZIndex = 100
+			--
+			UIStroke2.Color = Color3.fromRGB(45,45,45)
+			--
+			Alpha.Name = "Alpha"
+			Alpha.Position = UDim2.new(1,30,0,0)
+			Alpha.Size = UDim2.new(0,10,1,0)
+			Alpha.BackgroundColor3 = Color3.new(1,1,1)
+			Alpha.BorderColor3 = Color3.new(0,0,0)
+			Alpha.Image = "http://www.roblox.com/asset/?id=14684560169"
+			Alpha.AutoButtonColor = false
+			Alpha.ZIndex = 100
+			--
+			AlphaOutline.Name = "AlphaOutline"
+			AlphaOutline.Position = UDim2.new(0,-1,0,-1)
+			AlphaOutline.Size = UDim2.new(1,2,1,2)
+			AlphaOutline.BackgroundColor3 = Color3.new(1,1,1)
+			AlphaOutline.BackgroundTransparency = 1
+			AlphaOutline.BorderSizePixel = 0
+			AlphaOutline.BorderColor3 = Color3.new(0,0,0)
+			AlphaOutline.ZIndex = 100
+			--
+			UIStroke3.Color = Color3.fromRGB(45,45,45)
+			--
+			HueSlide.Name = "HueSlide"
+			HueSlide.Size = UDim2.new(1,0,0,3)
+			HueSlide.BackgroundColor3 = Color3.new(1,1,1)
+			HueSlide.BorderColor3 = Color3.new(0,0,0)
+			--
+			AlphaSlide.Name = "AlphaSlide"
+			AlphaSlide.Size = UDim2.new(1,0,0,3)
+			AlphaSlide.BackgroundColor3 = Color3.new(1,1,1)
+			AlphaSlide.BorderColor3 = Color3.new(0,0,0)
+			AlphaSlide.ZIndex = 100
+			--
+			ModeOutline.Name = "ModeOutline"
+			ModeOutline.Position = UDim2.new(1,65,0.5,0)
+			ModeOutline.Size = UDim2.new(0,60,0,12)
+			ModeOutline.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
+			ModeOutline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
+			ModeOutline.AnchorPoint = NewVector2(1,0.5)
+			ModeOutline.AutomaticSize = Enum.AutomaticSize.Y
+			ModeOutline.Visible = false
+			ModeOutline.ZIndex = 1020000010
+			--
+			ModeInline.Name = "ModeInline"
+			ModeInline.Position = UDim2.new(0,1,0,1)
+			ModeInline.Size = UDim2.new(1,-2,1,-2)
+			ModeInline.BackgroundColor3 = Color3.new(0.1294,0.1294,0.1294)
+			ModeInline.BorderSizePixel = 0
+			ModeInline.BorderColor3 = Color3.new(0,0,0)
+			ModeInline.ZIndex = 100
+			--
+			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			--
+			Hold.Name = "Hold"
+			Hold.Size = UDim2.new(1,0,0,15)
+			Hold.BackgroundColor3 = Color3.new(1,1,1)
+			Hold.BackgroundTransparency = 1
+			Hold.BorderSizePixel = 0
+			Hold.BorderColor3 = Color3.new(0,0,0)
+			Hold.Text = "Copy"
+			Hold.TextColor3 = Color3.fromRGB(145,145,145)
+			Hold.AutoButtonColor = false
+			Hold.FontFace = Font.new(Font:GetRegistry("menu_plex"))
+			Hold.TextSize = Library.FontSize
+			Hold.TextStrokeTransparency = 0
+			Hold.ZIndex = 100
+			--
+			Toggle.Name = "Toggle"
+			Toggle.Size = UDim2.new(1,0,0,15)
+			Toggle.BackgroundColor3 = Color3.new(1,1,1)
+			Toggle.BackgroundTransparency = 1
+			Toggle.BorderSizePixel = 0
+			Toggle.BorderColor3 = Color3.new(0,0,0)
+			Toggle.Text = "Paste"
+			Toggle.TextColor3 = Color3.fromRGB(145,145,145)
+			Toggle.AutoButtonColor = false
+			Toggle.FontFace = Font.new(Font:GetRegistry("menu_plex"))
+			Toggle.TextSize = Library.FontSize
+			Toggle.TextStrokeTransparency = 0
+			Toggle.ZIndex = 100
+
+			Library:Connection(Icon.MouseEnter, function()
+				Icon.BorderColor3 = Library.Accent
+			end)
+			--
+			Library:Connection(Icon.MouseLeave, function()
+				Icon.BorderColor3 = Color3.fromRGB(10,10,10)
+			end)
+
+			-- // Connections
+			local mouseover = false
+			local hue, sat, val = default:ToHSV()
+			local hsv = default:ToHSV()
+			local alpha = defaultalpha
+			local oldcolor = hsv
+			local slidingsaturation = false
+			local slidinghue = false
+			local slidingalpha = false
+
+			local function update()
+				local real_pos = game:GetService("UserInputService"):GetMouseLocation()
+				local mouse_position = NewVector2(real_pos.X, real_pos.Y - 40)
+				local relative_palette = (mouse_position - Color.AbsolutePosition)
+				local relative_hue     = (mouse_position - Hue.AbsolutePosition)
+				local relative_opacity = (mouse_position - Alpha.AbsolutePosition)
+				--
+				if slidingsaturation then
+					sat = math.clamp(1 - relative_palette.X / Color.AbsoluteSize.X, 0, 1)
+					val = math.clamp(1 - relative_palette.Y / Color.AbsoluteSize.Y, 0, 1)
+				end 
+				--  
+				if slidinghue then
+					hue = math.clamp(relative_hue.Y / Hue.AbsoluteSize.Y, 0, 1)
+				end  
+				-- 
+				if slidingalpha then
+					alpha = math.clamp(relative_opacity.Y / Alpha.AbsoluteSize.Y, 0, 1)
+				end
+				-- edited by finobe (yes these fucking alphas crash on roexec? nice executor for $8 a week :[ )
+				hsv = Color3.fromHSV(hue, sat, val)
+				Pointer.Position = UDim2.new(math.clamp(1 - sat, 0.005, 0.995), 0, math.clamp(1 - val, 0.005, 0.995), 0)
+				Color.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
+				Alpha.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
+				IconInline.BackgroundColor3 = hsv
+
+				HueSlide.Position = UDim2.new(0,0,math.clamp(hue, 0.005, 0.995),0)
+				AlphaSlide.Position = UDim2.new(0,0,math.clamp(alpha, 0.005, 0.995),0)
+
+				if flag then
+					Library.Flags[flag] = {} 
+					Library.Flags[flag]["Color"] = Color3.fromRGB(hsv.r * 255, hsv.g * 255, hsv.b * 255)
+					Library.Flags[flag]["Transparency"] = alpha
+				end
+
+				callback(Color3.fromRGB(hsv.r * 255, hsv.g * 255, hsv.b * 255), alpha)
+			end
+
+			local function set(color, a)
+				if type(color) == "table" then
+					a = color[4]
+					color = Color3.fromHSV(color[1], color[2], color[3])
+				end
+				if type(color) == "string" then
+					color = Color3.fromHex(color)
+				end
+
+				local oldcolor = hsv
+				local oldalpha = alpha
+
+				hue, sat, val = color:ToHSV()
+				alpha = a or 1
+				hsv = Color3.fromHSV(hue, sat, val)
+
+				if hsv ~= oldcolor then
+					IconInline.BackgroundColor3 = hsv
+					Color.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
+					Pointer.Position = UDim2.new(math.clamp(1 - sat, 0.005, 0.995), 0, math.clamp(1 - val, 0.005, 0.995), 0)
+					Alpha.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
+					HueSlide.Position = UDim2.new(0,0,math.clamp(hue, 0.005, 0.995),0)
+					AlphaSlide.Position = UDim2.new(0,0,math.clamp(alpha, 0.005, 0.995),0)
+
+					if flag then
+						Library.Flags[flag] = {} 
+						Library.Flags[flag]["Color"] = Color3.fromRGB(hsv.r * 255, hsv.g * 255, hsv.b * 255)
+						Library.Flags[flag]["Transparency"] = alpha
+					end
+
+					callback(Color3.fromRGB(hsv.r * 255, hsv.g * 255, hsv.b * 255), alpha)
+				end
+			end
+
+			Flags[flag] = set
+
+			set(default, defaultalpha)
+
+			Sat.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					slidingsaturation = true
+					update()
+				end
+			end)
+
+			Sat.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					slidingsaturation = false
+					update()
+				end
+			end)
+
+			Hue.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					slidinghue = true
+					update()
+				end
+			end)
+
+			Hue.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					slidinghue = false
+					update()
+				end
+			end)
+
+			Alpha.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					slidingalpha = true
+					update()
+				end
+			end)
+
+			Alpha.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					slidingalpha = false
+					update()
+				end
+			end)
+
+			Library:Connection(game:GetService("UserInputService").InputChanged, function(input)
+				if input.UserInputType == Enum.UserInputType.MouseMovement then
+					if slidingalpha then
+						update()
+					end
+
+					if slidinghue then
+						update()
+					end
+
+					if slidingsaturation then
+						update()
+					end
+				end
+			end)
+
+			Icon.MouseButton1Down:Connect(function()
+				ColorWindow.Visible = not ColorWindow.Visible
+				parent.ZIndex = ColorWindow.Visible and 5 or 1
+
+				if slidinghue then
+					slidinghue = false
+				end
+
+				if slidingsaturation then
+					slidingsaturation = false
+				end
+
+				if slidingalpha then
+					slidingalpha = false
+				end
+			end)
+			
+			Library:Connection(Icon.MouseButton2Down, function()
+				ModeOutline.Visible = not ModeOutline.Visible
+			end)
+			--
+			Library:Connection(Hold.MouseButton1Down, function()
+				Library.CopiedColor = hsv
+				Library.CopiedAlpha = alpha
+			end)
+			--
+			Library:Connection(Toggle.MouseButton1Down, function()
+				set(Library.CopiedColor or Color3.new(1,1,1), Library.CopiedAlpha or 0)
+			end)
+			--
+			Library:Connection(game:GetService("UserInputService").InputBegan, function(Input)
+				if ModeOutline.Visible and Input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if not Library:IsMouseOverFrame(Icon) then
+						ModeOutline.Visible = false
+					end
+				end
+			end)
+
+			local colorpickertypes = {}
+
+			function colorpickertypes:Set(color, newalpha)
+				set(color, newalpha)
+			end
+
+			Library:Connection(game:GetService("UserInputService").InputBegan, function(Input)
+				if ColorWindow.Visible and Input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if not Library:IsMouseOverFrame(ColorWindow) and not Library:IsMouseOverFrame(Icon) then
+						ColorWindow.Visible = false
+						parent.ZIndex = 1
+					end
+				end
+			end)
+
+			return colorpickertypes, ColorWindow
+		end
+	end
+	-- // Doc Functions
+	do
+		local Pages = Library.Pages;
+		local Sections = Library.Sections;
+		function Library:Window(Options)
+			local Window = {
+				Pages = {};
+				Sections = {};
+				Elements = {};
+				Dragging = { false, UDim2.new(0, 0, 0, 0) };
+				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 600);
+			};
+			--
+			local ScreenGui = Instance.new('ScreenGui', game.CoreGui)
+			local Outline = Instance.new('Frame', ScreenGui)
+			local Inline = Instance.new('Frame', Outline)
+			local Accent = Instance.new('Frame', Inline)
+			local HolderOutline = Instance.new('Frame', Inline)
+			local HolderInline = Instance.new('Frame', HolderOutline)
+			local Tabs = Instance.new('Frame', HolderInline)
+			local UIListLayout = Instance.new('UIListLayout', Tabs)
+			local DragButton = Instance.new('TextButton', Outline)
+			local KeybindList = Library:KeybindList()
+			Library.KeyList = KeybindList;
+			HolderInline.ClipsDescendants = true
+			--
+			ScreenGui.DisplayOrder = 2
+			Library.ScreenGUI = ScreenGui
+			--
+			Outline.Name = "Outline"
+			Outline.Position = UDim2.new(0.5,0,0.5,0)
+			Outline.Size = Window.Size
+			Outline.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
+			Outline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
+			Outline.AnchorPoint = Vector2.new(0.5,0.5)
+			Library.Holder = Outline
+			--
+			Inline.Name = "Inline"
+			Inline.Position = UDim2.new(0,1,0,1)
+			... (197 KB left)

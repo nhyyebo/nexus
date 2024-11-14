@@ -1,0 +1,1141 @@
+
+
+
+// Misery Source || v1.0.5
+// Hi calls || << >>
+... (65 KB left)
+
+﻿
+
+--[[
+
+// Misery Source || v1.0.5
+// Hi calls || << >>
+
+]]--
+
+print("=")
+
+--// Initialize
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+print("=")
+  
+  if (not LPH_OBFUSCATED) then
+      LPH_NO_VIRTUALIZE = function(...) return (...) end;
+      LPH_JIT_MAX = function(...) return (...) end;
+      LPH_JIT_ULTRA = function(...) return (...) end;
+  end
+
+  print("CheckPoint 1")
+  
+  --// Custom Drawing
+  -- loadstring((syn and syn.request or request)({Url = "https://rentry.co/7osf4/raw", Method = "Get"}).Body)(); -- J4VZ9cJh
+  local MainColor = Color3.fromRGB(255, 102, 204)
+  local CrosshairHandler = loadstring(game:HttpGet('https://rentry.co/gp986rdd/raw', true))() do
+    getgenv().crosshair.enabled = false
+    getgenv().crosshair.color = MainColor
+  end
+  local ESPHandler = loadstring(game:HttpGet('https://rentry.co/kn2pfu48/raw', true))() do
+    getgenv().esp.Enabled = false
+    getgenv().esp.SkeletonEnabled = false
+    getgenv().esp.ChamsEnabled = false
+  end
+
+  local YunDrawingApi = loadstring(game:HttpGet('https://raw.githubusercontent.com/caIIed/Librarys/main/Yun%20Api.lua', true))()
+
+  local TargetCircle = YunDrawingApi:New3DCircle() do
+    TargetCircle.Visible = false
+    TargetCircle.ZIndex = 1
+    TargetCircle.Transparency = 1
+    TargetCircle.Color = MainColor
+    TargetCircle.Thickness = 1
+    TargetCircle.Radius = 2
+    TargetCircle.Rotation = Vector2.new(2, 0)
+end
+  
+  --// Services
+  local Workspace = game:GetService("Workspace")
+  local Debris            = game:GetService('Debris');
+  local Players = game:GetService("Players")
+  local UserInputService = game:GetService('UserInputService')
+  local TweenService = game:GetService('TweenService')
+  local ContextAction = game:GetService('ContextActionService')
+  local Lighting = game:GetService('Lighting')
+  local MarketPlace = game:GetService('MarketplaceService')
+  local RunService = game:GetService('RunService')
+  local ReplicatedStorage = game:GetService('ReplicatedStorage')
+  
+  --// Variables
+
+  print("CheckPoint 2")
+  
+  local Target = nil
+  local Notification_Icon = "rbxassetid://57254792"
+  
+  
+  local Notifications = {};
+  local Utility = {};
+  local TracerLine, nigganiggaXD , FakeHitboxPart, DotParent, newBillboard, newFrame, newUiCornor = Drawing.new("Line"), Instance.new("MeshPart"), Instance.new("Part",game.Workspace), Instance.new("Part",game.Workspace), Instance.new("BillboardGui", DotParent), Instance.new("Frame", newBillboard),  Instance.new("UICorner", newFrame)
+  local sayMessage = function(msg) ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "ALL") end
+  task.spawn(function ()
+    newBillboard.Name = "endless"
+    newBillboard.Adornee = DotParent
+    newBillboard.Size = UDim2.new(1, 0, 1, 0)
+    newBillboard.AlwaysOnTop = true
+    newFrame.Size = UDim2.new(1, 0, 1, 0)
+    newFrame.BackgroundTransparency = 0
+    newUiCornor.CornerRadius = UDim.new(50, 50)
+    DotParent.CanCollide = false
+    DotParent.Anchored = true
+    DotParent.CFrame = CFrame.new(0,2000,0)
+    DotParent.Transparency = 1
+    nigganiggaXD.MeshId = "rbxassetid://3726303797"  --3726303797
+    nigganiggaXD.CanCollide = false
+    nigganiggaXD.Anchored = true
+    nigganiggaXD.Material = Enum.Material.Neon
+    nigganiggaXD.Parent = game.Workspace
+  end)
+  
+  local AntiAimViewer_Enabled = false
+  local AntiAimViewer_HighLight = false
+  local AntiAimViewer_HighLight_OutLineColor = Color3.fromRGB(255, 255, 255)
+  local AntiAimViewer_HighLight_FillColor = MainColor
+  
+  local AntiAimViewer_Color = Color3.fromRGB(255, 102, 204)
+  local AntiAimViewer_Target = nil
+  local AntiAimViewer_Method = "MousePos"
+  
+  local Client = Players.LocalPlayer
+  local ClientCharacter = Client and (Client.Character or Client.CharacterAdded:Wait())
+  local enabled, TargetFalling, DetectAnti, AntiGroundValue, WhenAntiGroundActivate, Script = false, false, true, 0.5, -20, {
+    Drawing = {},
+    Connections = {},
+    Locals = {
+        NetworkShouldSleep = false,
+        OriginalVelocity = {}
+    },
+    Functions = {}
+}
+  local Mouse, Camera = Client:GetMouse(), game:GetService("Workspace").CurrentCamera
+  local PreviousPosition, PreviusVelocity = Vector3.new(0,0,0), Vector3.new(0,0,0)
+  local req =  (syn and syn.request or request);
+  local CFrameSpeedKeyBind
+  local flyvariableshit = false
+  local chatSpamTick = tick()
+  local GuiService   = game:GetService('GuiService');
+  local GetGuiInset = GuiService.GetGuiInset
+
+
+  local EnabledTrashTalkF = true;
+  getgenv().UsableTrashTalk = false
+  
+  
+  local raycastParams = RaycastParams.new()
+  raycastParams.FilterDescendantsInstances = {Workspace.CurrentCamera, ClientCharacter}
+  raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+  raycastParams.IgnoreWater = true
+  
+  --// Tables
+  local Notifications = {};
+  local Utility = {};
+  local FoVCircle = Drawing.new('Circle') do
+    FoVCircle.Radius       = 1500
+    FoVCircle.Color        = MainColor
+    FoVCircle.Filled       = false
+    FoVCircle.NumSides     = 120
+    FoVCircle.Transparency = 1
+    FoVCircle.Visible      = false
+end
+
+local TeleportService = game:GetService("TeleportService");
+local Desync = {}
+
+local Notifications = {};
+local Utility = {};
+local Games = {
+    [2788229376] = {Name = "Da Hood",                  Argument = "UpdateMousePosI"},
+    [16033173781] = {Name = "Da Hood Macro",                  Argument = "UpdateMousePosI"},
+    [9825515356] = {Name = "Hood Customs",             Argument = "MousePosUpdate"},
+    [5602055394] = {Name = "Hood Modded",              Argument = "MousePos"},
+    [9183932460] = {Name = "Untitled Hood",            Argument = "UpdateMousePos"},
+    [16709048641] = {Name = "Da Downhill",             Argument = "MOUSE"},
+    [16357436647] = {Name = "Hood Bank",               Argument = "MOUSE"},
+    [16357446356] = {Name = "Da Uphill",               Argument = "MOUSE"},
+    [15186202290] = {Name = "Da Strike",               Argument = "MOUSE"},
+    [15763167440] = {Name = "Da Hood Bot Aim Trainer", Argument = "MOUSE"},
+    [11143225577] = {Name = "1v1 Hood Aim Trainer",    Argument = "UpdateMousePos"},
+    [15763494605] = {Name = "Hood Aim",                Argument = "MOUSE"},
+    [15166543806] = {Name = "Moon Hood",               Argument = "MoonUpdateMousePos"},
+}
+
+if Games[game.PlaceId] then
+    local gameInfo = Games[game.PlaceId]
+    MousePos = gameInfo.Argument
+else
+    MousePos = "UpdateMousePos"
+end
+
+local ItemTable = {
+    ['Guns'] = {
+        ['LMG'] = '[LMG] - $3978';
+        ['AK-47'] = '[AK47] - $2387';
+        ['Silencer AR'] = '[SilencerAR] - $1326';
+        ['Silencer'] = '[Silencer] - $583';
+        ['Revolver'] = '[Revolver] - $1379';
+        ['AR'] = '[AR] - $1061';
+        ['AUG'] = '[AUG] - $2069';
+        ['Double-Barrel'] = '[Double-Barrel SG] - $1432';
+        ['Drum Gun'] = '[DrumGun] - $3183';
+        ['Flamethrower'] = '[Flamethrower] - $15914';
+        ['Glock'] = '[Glock] - $318';
+        ['P90'] = '[P90] - $1061';
+        ['RPG'] = '[RPG] - $6365';
+        ['Rifle'] = '[Rifle] - $1644';
+        ['SMG'] = '[SMG] - $796';
+        ['Shotgun'] = '[Shotgun] - $1326';
+        ['Tactical Shotgun'] = '[TacticalShotgun] - $1857';
+    };
+
+    ['Ammo'] = {
+        ['LMG'] = '200 [LMG Ammo] - $318';
+        ['AK-47'] = '90 [AK47 Ammo] - $85';
+        ['Silencer AR'] = '120 [SilencerAR Ammo] - $80';
+        ['Silencer'] = '25 [Silencer Ammo] - $53';
+        ['Revolver'] = '12 [Revolver Ammo] - $80';
+        ['AR'] = '100 [AR Ammo] - $80';
+        ['AUG'] = '90 [AUG Ammo] - $85';
+        ['Double-Barrel'] = '18 [Double-Barrel SG Ammo] - $53';
+        ['Drum Gun'] = '100 [DrumGun Ammo] - $212';
+        ['Flamethrower'] = '140 [Flamethrower Ammo] - $1644';
+        ['Glock'] = '25 [Glock Ammo] - $64';
+        ['P90'] = '120 [P90 Ammo] - $64';
+        ['RPG'] = '5 [RPG Ammo] - $1061';
+        ['Rifle'] = '5 [Rifle Ammo] - $265';
+        ['SMG'] = '80 [SMG Ammo] - $64';
+        ['Shotgun'] = '20 [Shotgun Ammo] - $64';
+        ['Tactical Shotgun'] = '20 [TacticalShotgun Ammo] - $64';
+    };
+
+    ['Armor'] = {
+        ['High'] = '[High-Medium Armor] - $2440';
+        ['Medium'] = '[Medium Armor] - $1061';
+        ['Fire'] = '[Fire Armor] - $2493';
+    };
+};
+
+  local AssetTable = {
+      Sounds = {
+          ['None']         = '',
+          ['OSU']          = 'rbxassetid://7147454322',
+          ['Neverlose']    = 'rbxassetid://7216848832',
+          ['Bameware']     = 'rbxassetid://3124331820',
+          ['Hitmarker']    = 'rbxassetid://160432334',
+          ['skeet']        = 'rbxassetid://4817809188',
+          ['Rust']         = 'rbxassetid://5043539486',
+          ['Lazer Beam']   = 'rbxassetid://130791043',
+          ['Bow Hit']      = 'rbxassetid://1053296915',
+          ['Bow']          = 'rbxassetid://3442683707',
+          ['TF2 Hitsound'] = 'rbxassetid://3455144981',
+          ['TF2 Critical'] = 'rbxassetid://296102734',
+      };
+      Textures = {
+          ['Normal'] = 'rbxassetid://7151778302',
+          ['Fog'] = 'rbxassetid://9150635648',
+      };
+  };
+  
+  local ItemTableValues = {Sounds = {}, Guns = {}, Ammo = {}}; do 
+  
+      for i, v in pairs(AssetTable.Sounds) do
+          table.insert(ItemTableValues.Sounds, i)
+      end
+
+      for i, v in pairs(ItemTable.Guns) do 
+        table.insert(ItemTableValues.Guns, i)
+    end 
+
+    for i, v in pairs(ItemTable.Ammo) do 
+        table.insert(ItemTableValues.Ammo, i)
+    end 
+  
+  end 
+  
+  local Settings = {
+    ['AntiAim'] = {
+        ['InvisibleDesync'] = { ['Enabled'] = false;
+            ['X'] = {['Start'] = -16000; ['End'] = 16000;};
+            ['Y'] = {['Start'] = -16000; ['End'] = 16000;};
+            ['Z'] = {['Start'] = -16000; ['End'] = 16000;};
+        }
+    },
+
+    ['Destroy Cheaters'] = {
+        Enabled = false,
+        Keybind = Enum.KeyCode.G,
+    };
+
+    ['Combat'] = {
+        ['TargetLock'] = {
+            Enabled = false,
+            Predict = true,
+            KeyBind = Enum.KeyCode.T,
+            Prediction = 0.135,
+            HitParts = 'HumanoidRootPart',
+            NearestPart = false,
+            HitPartMode = 'Nearest Point',
+            Notifications = false,
+        },
+        ['Stuff'] = {
+            LookAt = false,
+            Spectate = false,
+            Notification = false,
+            AutoPrediction = true,
+        },
+        ['Checks'] = {
+            Resolver = true,
+            ResolverMethod = 'Recaculate',
+            AimviewerBypass = true,
+            NoGroundShots = true,
+            Knocked = true,
+            Grabbed = false,
+            Friend = false,
+            Crew = false,
+            AntiCurve = true,
+            WallCheck = true,
+        },
+        ['Visuals'] = {
+            ['Line'] = {
+                Enabled = true,
+                Circle = true,
+                Visible = true,
+                Color = MainColor,
+                Transparency = 1,
+                Thickness = 2,
+            },
+            ['HighLight'] = {
+                Enabled = true,
+                Transparency = 0,
+                FillColor = MainColor,
+                OutLineColor = Color3.fromRGB(255, 255, 255),
+            },
+            ['BackTrack'] = {
+                Enabled = true,
+                Material = 'ForceField',
+                Color = MainColor,
+                Delay = 0.1,
+                Transparency = 0,
+            },
+        },
+    };
+  
+    ['Visuals'] = {
+        ['Weapon_Chams'] = {
+            Enabled = false,
+            Material = Enum.Material.SmoothPlastic,
+            Color = MainColor,
+        },
+        ['Character_Chams'] = {
+            Enabled = false,
+            Material = Enum.Material.ForceField,
+            Color = MainColor,
+
+            Trail = false,
+            Trail_Color = MainColor,
+            Trail_Life = 3,
+        },
+        ['World_Customization'] = {
+            Enabled = false,
+
+            Bars = false,
+            BarsColor = MainColor,
+        },
+        ['Bullet_Trails'] = {
+            Enabled = false,
+            Magnitude = 12,
+            Width = 1.7,
+            Brightness = 5,
+            Segments = 10,
+            LightEmission = 10,
+            Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(240, 175, 235)), ColorSequenceKeypoint.new(1, Color3.fromRGB(240, 175, 235))}),
+            Speed = 3,
+            Texture = 'Normal', -- 12781803086
+        },
+        ['Hit_Detection'] = {
+          Enabled = false,
+  
+          Notify = true,
+          Clone = true,
+          Pulse = false,
+          Sound = true,
+          HitSound = 'Rust',
+        },
+    };
+  
+    ['Misc'] = {
+        ['Auto_Buy'] = {
+            Gun = 'LMG',
+        },
+        ['Random'] = {
+            AutoStomp = false,
+            AntiBag = false,
+            NoJumpCooldown = false,
+            NoSlow = false,
+            NoRecoil = false,
+        },
+        ['Cash'] = {
+            AutoDrop = false,
+            Amount = 8000,
+            AutoPick = false,
+        },
+        ['NetworkAnti'] = {
+            Enabled = false,
+            Notification = true,
+            Keybind = Enum.KeyCode.K
+        },
+        ['PredictionDisabler'] = {
+            Enabled = false,
+            KeyBind = Enum.KeyCode.X,
+            Notifications = false,
+            Errors = false,
+            AutoWalkSpeed = false,
+            AnimationSpeed = 21,
+            WalkSpeed = 12,
+        },
+        ['TargetStrafe'] = {
+            Enabled = false,
+            Visualize_Circle = false,
+            Color = Color3.fromRGB(255, 194, 254),
+            Distance = 9,
+            Speed = 1,
+            Height = 0,
+  
+            Method = 'Strafe', -- Strafe, Randomize
+            RandomizeMin = 2,
+            RandomizeMax = 17,
+
+            AutoFire = true,
+            AutoReload = true,
+        },
+        ['Fly'] = {
+            Enabled = false,
+            Notification = false,
+            KeyBind = Enum.KeyCode.X,
+            Speed = 5 * 50,
+        },
+        ['WalkSpeed'] = {
+            Enabled = false,
+            Notifications = false,
+            KeyBind = Enum.KeyCode.X,
+            Speed = 1,
+        },
+        ['TrashTalk'] = {
+            ['Use'] = {
+                Enabled = false,
+                Target = false,
+                Notification = false,
+                UsekeyBind = false,
+                KeyBind = Enum.KeyCode.B,
+                Method = "Misery",
+            },
+            ['Words'] = {
+                Misery = {"do you have $$$$mmMMIIEERRY!!!", "MoveDirection isn't a resolver", "Skid🤣", "WHERE BRO AIMING AT!?", "Lost 2 Misery", "omg so bad", "imagine dying to me", "whats the point of playing with that aim🙏😂", "WOWZIES", "OH MY DAYS", "Misery'd", "1d luh bro", "WOW U SUCK", "Im right here😂", "couldnt be me", "just broke ur ankles", "UR ANKLES? GONE?", "destroyed", "LOL DESTROYED", "LOL"},
+            },
+        },
+    };
+  
+    ['Configs'] = {
+        Menu = {
+            Keybind = Enum.KeyCode.P,
+        },
+    };
+  };
+  
+  print("CheckPoint 3")
+  
+  
+  getgenv().MethodBeingUsed = Settings.Misc.TrashTalk.Words.Misery
+  
+  -- // functions
+
+function Script.Functions.Connection(event, func)
+    return event:Connect(func)
+end
+
+local function DestroyCheaters()
+    Settings['Destroy Cheaters'].Enabled = not Settings['Destroy Cheaters'].Enabled;
+
+    if Settings['Destroy Cheaters'].Enabled then
+        local Character = Client and Client.Character
+        if Character then
+            local RootPart = Character and Character:FindFirstChild('HumanoidRootPart')
+            local Position = RootPart and RootPart.CFrame
+    
+            task.wait()
+
+            while task.wait(2) do
+                Desync.cframe = (RootPart.CFrame * CFrame.new(9e9, 0/0, 9e9))
+        
+                task.wait(1)
+    
+                Desync.cframe = Position
+                task.wait()
+                Desync.cframe = nil
+            end
+
+        end
+
+    end
+end
+
+Script.Functions.Update_Desync = function(bool)
+    Settings.AntiAim.InvisibleDesync.Enabled = bool 
+
+    if (not bool) then 
+        if (Script.Connections['Invisible Desync']) then 
+            Script.Connections['Invisible Desync']:Disconnect()
+            Script.Connections['Invisible Desync'] = nil 
+        end
+
+        setfflag('S2PhysicsSenderRate', 15)
+        setfflag('PhysicsSenderMaxBandwidthBps', 38760)
+        sethiddenproperty(Client.Character.HumanoidRootPart, "NetworkIsSleeping", false)
+    end
+end
+
+Script.Functions.InvisibleDesync = function()   
+    local NetworkShouldSleep = false
+    if not Script.Connections["Invisible Desync"] then
+        Script.Connections["Invisible Desync"] = Script.Functions.Connection(RunService.Heartbeat, function()
+            if (not Settings.AntiAim.InvisibleDesync.Enabled) then return end 
+
+            Script.Locals.NetworkShouldSleep = not Script.Locals.NetworkShouldSleep
+            setfflag("S2PhysicsSenderRate", tostring(2)) 
+            setfflag("PhysicsSenderMaxBandwidthBps", tostring(math.pi/3))
+
+            sethiddenproperty(Client.Character.HumanoidRootPart, "NetworkIsSleeping", Script.Locals.NetworkShouldSleep)
+            Script.Locals.OriginalVelocity[1] = Client.Character.HumanoidRootPart.Velocity
+            Script.Locals.OriginalVelocity[2] = Client.Character.HumanoidRootPart.AssemblyLinearVelocity
+
+            Client.Character.HumanoidRootPart.Velocity = Client.Character.HumanoidRootPart.Velocity + Vector3.new(math.random(Settings.AntiAim.InvisibleDesync.X['Start'], Settings.AntiAim.InvisibleDesync.X['End']), math.random(Settings.AntiAim.InvisibleDesync.Y['Start'], Settings.AntiAim.InvisibleDesync.Y['End']), math.random(Settings.AntiAim.InvisibleDesync.Z['Start'], Settings.AntiAim.InvisibleDesync.Z['End']))
+            Client.Character.HumanoidRootPart.AssemblyLinearVelocity = Client.Character.HumanoidRootPart.AssemblyLinearVelocity + Vector3.new(math.random(Settings.AntiAim.InvisibleDesync.X['Start'], Settings.AntiAim.InvisibleDesync.X['End']), math.random(Settings.AntiAim.InvisibleDesync.Y['Start'], Settings.AntiAim.InvisibleDesync.Y['End']), math.random(Settings.AntiAim.InvisibleDesync.Z['Start'], Settings.AntiAim.InvisibleDesync.Z['End']))
+
+            RunService.RenderStepped:Wait()
+
+            Client.Character.HumanoidRootPart.Velocity = Script.Locals.OriginalVelocity[1]
+            Client.Character.HumanoidRootPart.AssemblyLinearVelocity = Script.Locals.OriginalVelocity[2]
+            setfflag("S2PhysicsSenderRate", tostring(1))
+            NetworkShouldSleep = not NetworkShouldSleep
+        end)
+    end
+    RunService.RenderStepped:Wait()
+    sethiddenproperty(Client.Character.HumanoidRootPart, "NetworkIsSleeping", NetworkShouldSleep)
+    setfflag("S2PhysicsSenderRate", tostring(15))
+end
+
+Script.Functions.InvisibleDesync()
+
+local function ToggleTrail(Bool)
+    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+        if v:IsA("BasePart") then
+            if Bool then
+                local BlaBla = Instance.new("Trail", v)
+                BlaBla.Texture = "rbxassetid://1390780157"
+                BlaBla.Parent = v
+                local Pointer1 = Instance.new("Attachment", v)
+                Pointer1.Name = "Pointer1"
+                local Pointer2 = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
+                Pointer2.Name = "Pointer2"
+                BlaBla.Attachment0 = Pointer1
+                BlaBla.Attachment1 = Pointer2
+                BlaBla.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Settings.Visuals.Character_Chams.Trail_Color), ColorSequenceKeypoint.new(1, Settings.Visuals.Character_Chams.Trail_Color)});
+                BlaBla.Lifetime = Settings.Visuals.Character_Chams.Trail_Life
+                BlaBla.Name = "BlaBla" -- Set the name
+            else
+                for _, child in ipairs(v:GetChildren()) do
+                    if child:IsA("Trail") and child.Name == 'BlaBla' then -- Corrected the condition
+                        child:Destroy()
+                    end
+                end
+            end
+        end
+    end
+end
+
+local function AutoBuy(Obj, Ammo, Amount)
+    local Character = Client and (Client.Character or Client.CharacterAdded:Wait())
+    local RootPart  = Character and Character.HumanoidRootPart
+    local RootPos   = RootPart.CFrame
+
+    local ObjectPath = Workspace.Ignored.Shop[Obj]
+    local ClickDet   = ObjectPath.ClickDetector
+
+    if Character and Ammo then
+        for i = 1, Amount do
+            RootPart.CFrame = ObjectPath.Head.CFrame
+            task.wait(0.3)
+            fireclickdetector(ClickDet)
+            task.wait(0.15)
+        end
+
+        RootPart.CFrame = RootPos
+    else
+        RootPart.CFrame = ObjectPath.Head.CFrame
+        task.wait(0.15)
+        fireclickdetector(ClickDet)
+        task.wait(0.15)
+        RootPart.CFrame = RootPos
+    end
+end
+
+
+  function Alive(Player)
+    if Player and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") ~= nil and Player.Character:FindFirstChild("Humanoid") ~= nil and Player.Character:FindFirstChild("Head") ~= nil then
+        return true
+    end
+    return false
+  end
+  
+  local function GetTool()
+    local Character = Client.Character 
+    local Tool = nil 
+
+    if (not Character) then 
+        return Tool
+    end
+
+    for _, v in pairs(Character:GetChildren()) do 
+        if (not v:IsA('Tool')) then continue end 
+
+        if (v:FindFirstChild('Ammo') and v:FindFirstChild('MaxAmmo')) then 
+            Tool = v 
+        end
+    end
+
+    return Tool
+end
+  
+  function findPlayerByUsername(username)
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player.Name == username then
+            return player
+        end
+    end
+    return nil  -- Player not found
+  end
+
+  local function FindPlayer(Player)
+    for i, v in pairs(Players:GetPlayers()) do
+        if (v.Name:lower():find(Player:lower())) then
+            if v.Name == Client.name then continue end
+            return v
+        end
+    end
+end
+
+  
+  
+  --\\ Ui
+  local Menu = loadstring(req({Url = "https://pastebin.com/raw/55iKqxgB", Method = "Get"}).Body)(); -- WYVJcRAt
+
+    local function MenuNameUpdate()
+        while (task.wait()) do
+            local Name, PlaceHolder = 'Misery', ''
+            for i = 1, #Name do --try
+                local Character = string.sub(Name, i, i)
+                PlaceHolder = PlaceHolder .. Character
+                Menu:SetTitle(PlaceHolder .. '<font color="#' .. tostring(Menu.Accent:ToHex()) .. '">.cc</font>')
+                task.wait(.25)
+            end
+        end
+    end
+  
+    --// functions
+    local function MenuToggle(Action_Name: string, State: EnumItem, Input: InputObject)
+        if not State or State == Enum.UserInputState.Begin then
+            Menu:SetVisible(not Menu.IsVisible)
+        end
+    end
+  
+    task.spawn(MenuNameUpdate)
+  
+    Menu.Accent = MainColor
+
+    Menu.Keybinds = Menu.Keybinds() do
+        Menu.Keybinds.Add('Fly', Settings.Misc.Fly.Enabled and 'On' or 'Off')
+        Menu.Keybinds.Add('CFrame', Settings.Misc.WalkSpeed.Enabled and 'On' or 'Off')
+        Menu.Keybinds.Add('Prediction Breaker', Settings.Misc.PredictionDisabler.Enabled and 'On' or 'Off')
+    end
+
+    Menu.Indicators = Menu.Indicators() do
+        Menu.Indicators.Add('Target', 'Text', 'nil')
+        Menu.Indicators.Add('Target Health', 'Bar', 50, 0, 100) -- Value, Min, Max
+        Menu.Indicators.Add('Target Armor', 'Bar', 100, 0, 200) -- Value, Min, Max
+
+        Menu.Indicators.Add('Knocked Out', 'Text', 'True')
+        Menu.Indicators.Add('Anti Aiming', 'Text', 'True')
+        Menu.Indicators.Add('Target Ammo', 'Bar', 50, 0, 200) -- Value, Min, Max
+        --Menu.Indicators:SetPosition(UDim2.new(0, 39, 0, 281))
+    end
+    Menu.Watermark()
+    Menu.Watermark:Update('Misery<font color="#' .. tostring(Menu.Accent:ToHex()) .. '">.cc</font>') -- please fix this and we can add a variable for a color.
+  
+    local Window = Menu:SetTitle('Misery') do
+  
+        local CombatTab = Menu.Tab("Main") do
+  
+            local TargetAimSection = Menu.Container("Main", "Target Aim", "Left") do
+                Menu.CheckBox("Main", "Target Aim", "Enabled", false, function(a)
+                    Settings.Combat.TargetLock.Enabled = a
+                end)
+                Menu.Hotkey("Main", "Target Aim", "Keybind", Enum.KeyCode.T, function(a)
+                    Settings.Combat.TargetLock.KeyBind = a
+                end)
+                Menu.CheckBox("Main", "Target Aim", "Look At", false, function(a)
+                    Settings.Combat.Stuff.LookAt = a
+                end)
+                Menu.CheckBox("Main", "Target Aim", "Spectate", false, function(a)
+                    Settings.Combat.Stuff.Spectate = a
+                end)
+                Menu.CheckBox("Main", "Target Aim", "Notification", false, function(a)
+                    Settings.Combat.Stuff.Notification = a
+                end)
+            end
+  
+            local HitPartSection = Menu.Container("Main", "HitPart", "Left") do
+                Menu.CheckBox("Main", "HitPart", "NearestPart", false, function(a)
+                    Settings.Combat.TargetLock.NearestPart = a
+                end)
+                Menu.ComboBox("Main", "HitPart", "NearestPart Mode", "Nearest Part", {"Nearest Point", "Nearest Part"}, function(a)
+                    Settings.Combat.TargetLock.HitPartMode = a
+                end)
+                Menu.ComboBox("Main", "HitPart", "HitPart", "HumanoidRootPart", {"Head", "LeftHand", "RightHand", "LeftLowerArm", "RightLowerArm", "LeftUpperArm", "RightUpperArm", "LeftFoot", "LeftLowerLeg", "UpperTorso", "HumanoidRootPart", "LeftUpperLeg", "RightLowerLeg", "RightFoot", "LowerTorso"}, function(a)
+                    Settings.Combat.TargetLock.HitParts = a
+                end)
+            end
+  
+            local PredictionSection = Menu.Container("Main", "Prediction", "Left") do
+                Menu.CheckBox("Main", "Prediction", "Enabled", true, function(a)
+                    Settings.Combat.TargetLock.Predict = a
+                end)
+                Menu.CheckBox("Main", "Prediction", "Auto Prediction", true, function(a)
+                    Settings.Combat.Stuff.AutoPrediction = a
+                end)
+                Menu.TextBox("Main", "Prediction", "Prediction", '0.135', function(a)
+                    Settings.Combat.TargetLock.Prediction = a
+                end)
+            end
+  
+            local ChecksSection = Menu.Container("Main", "Checks", "Left") do
+                Menu.CheckBox("Main", "Checks", "No Ground Shots", true, function(a)
+                    Settings.Combat.Checks.NoGroundShots = a
+                end)
+                Menu.CheckBox("Main", "Checks", "Anti Curve", true, function(a)
+                    Settings.Combat.Checks.AntiCurve = a
+                end)
+                Menu.CheckBox("Main", "Checks", "Knocked Check", true, function(a)
+                    Settings.Combat.Checks.Knocked = a
+                end)
+                Menu.CheckBox("Main", "Checks", "Grabbed Check", false, function(a)
+                    Settings.Combat.Checks.Grabbed = a
+                end)
+                Menu.CheckBox("Main", "Checks", "Crew Check", false, function(a)
+                    Settings.Combat.Checks.Crew = a
+                end)
+                Menu.CheckBox("Main", "Checks", "Aim Viewer Bypass", true, function(a)
+                    print(a)
+                end)
+                Menu.CheckBox("Main", "Checks", "Resolver", true, function(a)
+                    print(a)
+                end)
+                Menu.CheckBox("Main", "Checks", "Friend Check", false, function(a)
+                    Settings.Combat.Checks.Friend = a
+                end)
+                Menu.CheckBox("Main", "Checks", "Wall Check", true, function(a)
+                    Settings.Combat.Checks.WallCheck = a
+                end)
+            end
+  
+            local TSSection = Menu.Container("Main", "Target Strafe", "Right") do
+                Menu.CheckBox("Main", "Target Strafe", "Enabled", false, function(a)
+                    Settings.Misc.TargetStrafe.Enabled = a
+                end)
+                Menu.ComboBox("Main", "Target Strafe", "Method", "Strafe", {"Strafe", "Randomize"}, function(a)
+                  Settings.Misc.TargetStrafe.Method = a
+              end)
+                Menu.CheckBox("Main", "Target Strafe", "Visualize", false, function(a)
+                    Settings.Misc.TargetStrafe.Visualize_Circle = a
+                end)
+                Menu.CheckBox("Main", "Target Strafe", "Auto Fire", true, function(a)
+                    Settings.Misc.TargetStrafe.AutoFire = a
+                end)
+                Menu.CheckBox("Main", "Target Strafe", "Auto Reload", true, function(a)
+                    Settings.Misc.TargetStrafe.AutoReload = a
+                end)
+                Menu.ColorPicker("Main", "Target Strafe", "Color", MainColor, 0, function(a)
+                    Settings.Misc.TargetStrafe.Color = a
+                end)
+                Menu.Slider("Main", "Target Strafe", "Distance", 0, 50, 9, '', 1, function(a)
+                    Settings.Misc.TargetStrafe.Distance = a
+                end)
+                Menu.Slider("Main", "Target Strafe", "Speed", 0, 15, 1, '', 1, function(a)
+                    Settings.Misc.TargetStrafe.Speed = a
+                end)
+                Menu.Slider("Main", "Target Strafe", "Height", 0, 15, 0, '', 1, function(a)
+                    Settings.Misc.TargetStrafe.Height = a
+                end)
+                Menu.Slider('Main', 'Target Strafe', 'Teleport Min', 1, 20, 2, '', 1, function(Value)
+                  Settings.Misc.TargetStrafe.RandomizeMin = Value
+              end)
+              Menu.Slider('Main', 'Target Strafe', 'Teleport Max', 2, 40, 17, '', 1, function(Value)
+                  Settings.Misc.TargetStrafe.RandomizeMax = Value
+              end)
+  
+            end
+  
+            local HitDetectionSection = Menu.Container("Main", "Hit Detection", "Right") do
+              Menu.CheckBox("Main", "Hit Detection", "Enabled", false, function(a)
+                  Settings.Visuals.Hit_Detection.Enabled = a
+              end)
+              Menu.CheckBox("Main", "Hit Detection", "Hit Sound", false, function(a)
+                  Settings.Visuals.Hit_Detection.Sound = a
+              end)
+              Menu.CheckBox("Main", "Hit Detection", "Notify", false, function(a)
+                  Settings.Visuals.Hit_Detection.Notify = a
+              end)
+              Menu.ComboBox('Main', 'Hit Detection', 'Sounds', 'Rust', ItemTableValues.Sounds, function(self)
+                  Settings.Visuals.Hit_Detection.HitSound = self
+              end)
+              Menu.MultiSelect('Main', 'Hit Detection', 'Hit Effects', {
+                  ['Clone'] = Settings.Visuals.Hit_Detection.Clone,
+                  ['Pulse'] = Settings.Visuals.Hit_Detection.Pulse,
+              }, function(Selection)
+                  Settings.Visuals.Hit_Detection.Clone = Selection['Clone']
+                  Settings.Visuals.Hit_Detection.Pulse = Selection['Pulse']
+              end)
+  
+            end
+  
+  
+        end
+  
+        local MiscTab = Menu.Tab("Misc") do
+  
+            local MTSection1 = Menu.Container("Misc", "Prediction Breaker", "Left") do
+                Menu.CheckBox("Misc", "Prediction Breaker", "Enabled", false, function(a)
+                    Settings.Misc.PredictionDisabler.Enabled = a
+                end)
+                Menu.Hotkey("Misc", "Prediction Breaker", "Keybind", Enum.KeyCode.X, function(a)
+                    Settings.Misc.PredictionDisabler.KeyBind = a
+                end)
+                Menu.CheckBox("Misc", "Prediction Breaker", "Notifications", false, function(a)
+                    Settings.Misc.PredictionDisabler.Notifications = a
+                end)
+                Menu.CheckBox("Misc", "Prediction Breaker", "Errors", false, function(a)
+                    Settings.Misc.PredictionDisabler.Errors = a
+                end)
+                Menu.CheckBox("Misc", "Prediction Breaker", "Auto Settings", false, function(a)
+                    Settings.Misc.PredictionDisabler.AutoWalkSpeed = a
+                end)
+                Menu.Slider("Misc", "Prediction Breaker", "Animation Speed", 0, 50, 21, '%', 1, function(a)
+                    Settings.Misc.PredictionDisabler.AnimationSpeed = a
+                end)
+                Menu.Slider("Misc", "Prediction Breaker", "Walk Speed", 0, 50, 12, '%', 1, function(a)
+                    Settings.Misc.PredictionDisabler.WalkSpeed = a
+                end)
+            end
+  
+            local MTSection2 = Menu.Container("Misc", "CFrame Speed", "Right") do
+                Menu.CheckBox("Misc", "CFrame Speed", "Enabled", false, function(a)
+                    Settings.Misc.WalkSpeed.Enabled = a
+                end)
+                Menu.Hotkey("Misc", "CFrame Speed", "Keybind", Enum.KeyCode.X, function(a)
+                    Settings.Misc.WalkSpeed.KeyBind = a
+                end)
+                Menu.CheckBox("Misc", "CFrame Speed", "Notification", false, function(a)
+                    Settings.Misc.WalkSpeed.Notifications = a
+                end)
+                Menu.Slider("Misc", "CFrame Speed", "Speed", 0, 10, 3, '%', 1, function(a)
+                    Settings.Misc.WalkSpeed.Speed = a
+                end)
+            end
+  
+            local MTSection3 = Menu.Container("Misc", "Fly", "Right") do
+                Menu.CheckBox("Misc", "Fly", "Enabled", false, function(a)
+                    Settings.Misc.Fly.Enabled = a
+                end)
+                Menu.Hotkey("Misc", "Fly", "Keybind", Enum.KeyCode.X, function(a)
+                    Settings.Misc.Fly.KeyBind = a
+                end)
+                Menu.CheckBox("Misc", "Fly", "Notification", false, function(a)
+                    Settings.Misc.Fly.Notification = a
+                end)
+                Menu.Slider("Misc", "Fly", "Speed", 0, 30, 5, '%', 1, function(a)
+                    Settings.Misc.Fly.Speed = a * 50
+                end)
+            end
+  
+            local MTSection4 = Menu.Container("Misc", "Trash Talk", "Left") do
+                Menu.CheckBox("Misc", "Trash Talk", "Enabled", false, function(a)
+                    Settings.Misc.TrashTalk.Use.Enabled = a
+                end)
+                Menu.CheckBox("Misc", "Trash Talk", "Target", false, function(a)
+                    Settings.Misc.TrashTalk.Use.Target = a
+                end)
+                Menu.CheckBox("Misc", "Trash Talk", "Notification", false, function(a)
+                    Settings.Misc.TrashTalk.Use.Notification = a
+                end)
+                Menu.CheckBox("Misc", "Trash Talk", "Use Keybind", false, function(a)
+                    Settings.Misc.TrashTalk.Use.UsekeyBind = a
+                end)
+                Menu.Hotkey("Misc", "Trash Talk", "Keybind", Enum.KeyCode.B, function(a)
+                    Settings.Misc.TrashTalk.Use.KeyBind = a
+                end)
+            end
+  
+            local MTSection4 = Menu.Container("Misc", "Network Anti", "Left") do
+                Menu.CheckBox("Misc", "Network Anti", "Enabled", false, function(a)
+                    Settings.Misc.NetworkAnti.Enabled = a
+                end)
+                Menu.Hotkey("Misc", "Network Anti", "Keybind", Enum.KeyCode.K, function(a)
+                    Settings.Misc.NetworkAnti.KeyBind = a
+                end)
+                Menu.CheckBox("Misc", "Network Anti", "Notification", false, function(a)
+                    Settings.Misc.NetworkAnti.Notification = a
+                end)
+            end
+  
+            local MTSection5 = Menu.Container("Misc", "Teleport", "Right") do
+                Menu.ComboBox("Misc", "Teleport", "Place :", "Choose", {"Admin Base","Military","Revolver","High Medium Armor","Food","Gas Station","School","Ufo","Bank","Gym Top","Casino","Uphill","PlayGround","Flank"}, function(State)
+                    local CFrameValues = {
+                        ["Admin Base"] = CFrame.new(-874.903992, -32.6492004, -525.215698),
+                        ["High Medium Armor"] = CFrame.new(-934.73651123047, -28.492471694946, 565.99884033203),
+                        ["Food"] = CFrame.new(-788.39318847656, -39.649200439453, -935.27795410156),
+                        ["Gas Station"] = CFrame.new(608.599426, 65.3087997, -267.643066, -0.414288431, -1.04483455e-09, -0.91014564, -1.30518893e-08, 1, 4.79309215e-09, 0.91014564, 1.38648408e-08, -0.41428),
+                        ["School"] = CFrame.new(-581.790283, 68.4947281, 331.046448, 0.220051467, -7.56681329e-05, 0.975498199, -3.96428077e-05, 0.999999583, 8.65130132e-05, -0.975498199, -5.77078645e-05, 0.22005),
+                        ["Military"] = CFrame.new(92.643799, 122.749977, -860.128784, 0.986730993, 5.09704545e-09, 0.162363499, -9.24942123e-10, 1, -2.57716568e-08, -0.162363499, 2.52795154e-08, 0.986730993),
+                        ["Ufo"] = CFrame.new(65.1504517, 138.999954, -691.819031, -0.935115993, -5.9791418e-08, -0.354341775, -3.10840989e-08, 1, -8.67077574e-08, 0.354341775, -7.0067415e-08, -0.935115993),
+                        ["Bank"] = CFrame.new(-374.538391, 102.052887, -440.20871, 0.958144963, 9.24065989e-06, -0.286283433, -9.98981818e-07, 1, 2.89345699e-05, 0.286283433, -2.74375216e-05, 0.958144963),
+                        ["Gym Top"] = CFrame.new(-76.178093, 56.6998138, -629.940979, -0.9998914, -1.09370752e-07, 0.0147391548, -1.0945012e-07, 1, -4.57786342e-09, -0.0147391548, -6.1905685e-09, -0.9998914),
+                        ["Casino"] = CFrame.new(-1048.95093, 110.254997, -154.554016, 0.198458344, 0.0412604436, -0.979240835, -4.06676299e-05, 0.999113858, 0.0420895219, 0.98010987, -0.00831318926, 0.198284075),
+                        ["Uphill"] = CFrame.new(485.651947, 112.5, -644.316833, -0.998899043, 1.33881997e-06, 0.0469136797, 8.00526664e-07, 1, -1.14929126e-05, -0.0469136797, -1.14426994e-05, -0.998899043),
+                        ["Revolver"] = CFrame.new(-659.053162, 110.748001, -158.224365, 0.146754071, -2.38941595e-08, -0.989172995, -1.60316838e-09, 1, -2.43935396e-08, 0.989172995, 5.16566212e-09, 0.146754071),
+                        ["Flank"] = CFrame.new(376.730621, 130.748001, -245.620468, 0.996583343, 5.90310174e-06, -0.0825867951, -1.72590728e-06, 1, 5.06508768e-05, 0.0825867951, -5.03353003e-05, 0.996583343),
+                        ["PlayGround"] = CFrame.new(-260.836182, 126.424866, -877.783875, -0.977067351, -1.56508904e-05, -0.212922528, 9.92513264e-07, 1, -7.80593255e-05, 0.212922528, -7.64806027e-05, -0.977067351),
+                    }
+  
+                if CFrameValues[State] then
+                    Client.Character.HumanoidRootPart.CFrame = CFrameValues[State]
+                end
+                end)
+            end
+
+            local AutoBuySection = Menu.Container('Misc', 'Buy', 'Right') do
+
+                Menu.ComboBox('Misc', 'Buy', 'Gun', 'LMG', ItemTableValues.Guns, function(self)
+                    Settings.Misc.Auto_Buy.Gun = self
+                end)
+                Menu.Button('Misc', 'Buy', 'Buy Gun', function()
+                    AutoBuy(ItemTable.Guns[Settings.Misc.Auto_Buy.Gun], false, 2)
+                end)
+
+                Menu.Button('Misc', 'Buy', 'Buy Ammo', function()
+                    AutoBuy(ItemTable.Ammo[Settings.Misc.Auto_Buy.Gun], true, 1)
+                end)
+
+            end
+  
+            local MTSection6 = Menu.Container("Misc", "Stuff", "Left") do
+                Menu.CheckBox("Misc", "Stuff", "Auto Grab Cash", false, function(a)
+                    Settings.Misc.Cash.AutoPick = a
+                end)
+                Menu.CheckBox("Misc", "Stuff", "Auto Drop Cash", false, function(a)
+                    Settings.Misc.Cash.AutoDrop = a
+                end)
+                Menu.Slider("Misc", "Stuff", "Auto Drop Amount", 0, 10, 6, '%', 1, function(a)
+                    Settings.Misc.Cash.Amount = a * 1000
+                end)
+                Menu.CheckBox("Misc", "Stuff", "Auto Stomp", false, function(a)
+                    Settings.Misc.Random.AutoStomp = a
+                end)
+                
+                Menu.CheckBox("Misc", "Stuff", "No Recoil", false, function(a)
+                  Settings.Misc.Random.NoRecoil = a
+              end)
+  
+              Menu.CheckBox("Misc", "Stuff", "No Slow", false, function(a)
+                  Settings.Misc.Random.NoSlow = a
+              end)
+  
+                Menu.CheckBox("Misc", "Stuff", "No Jump cooldown", false, function(a)
+                    if a then
+                        local IsA = game.IsA
+                        local newindex = nil
+  
+                        newindex = hookmetamethod(game, "__newindex", function(self, Index, Value)
+                            if not checkcaller() and IsA(self, "Humanoid") and Index == "JumpPower" then
+                                return
+                            end
+                            return newindex(self, Index, Value)
+                        end)
+                    end
+                end)
+                Menu.CheckBox("Misc", "Stuff", "Anti Bag", false, function(a)
+                    Settings.Misc.Random.AntiBag = a
+                end)
+                Menu.CheckBox("Misc", "Stuff", "Bunny Hop", false, function(a)
+                    getgenv().Bhop = a
+                    while getgenv().Bhop do
+                        task.wait()
+                        if Client.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Freefall then
+                            Client.Character.Humanoid:ChangeState("Jumping")
+                        end
+                    end
+                end)
+            end
+
+            local MTSection9 = Menu.Container("Misc", "Desync", "Left") do
+                Menu.CheckBox("Misc", "Desync", "Invisible Desync", false, function(a)
+
+                    for i = 1, 2 do 
+                        Script.Functions.Update_Desync(a)
+                        task.wait(.1)
+                    end
+
+                end)
+
+                Menu.CheckBox("Misc", "Desync", "CFrame Desync", false, function(a)
+                    Settings['Destroy Cheaters'].Enabled = a
+                    DestroyCheaters()
+                end)
+
+                Menu.Hotkey("Misc", "Desync", "Keybind", Settings['Destroy Cheaters'].Keybind, function(a)
+                    Settings['Destroy Cheaters'].Keybind = a
+                    DestroyCheaters()
+                end)
+
+            end
+        end
+  
+        local VisualsTab = Menu.Tab("Visuals") do
+  
+            local TLHightlightSection = Menu.Container("Visuals", "ESP", "Left") do
+                Menu.CheckBox("Visuals", "ESP", "Enabled", false, function(a)
+                    getgenv().esp.Enabled = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "Box", true, function(a)
+                    getgenv().esp.BoxEnabled = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "Box Color", Color3.fromRGB(255, 255, 255), 0, function(a)
+                    getgenv().esp.BoxColor = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "Text Color", Color3.fromRGB(255, 255, 255), 0, function(a)
+                    getgenv().esp.TextColor = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "Name", true, function(a)
+                    getgenv().esp.TextLayout.name.enabled = a
+                end)
+                
+                Menu.CheckBox("Visuals", "ESP", "Health", true, function(a)
+                    getgenv().esp.TextLayout.health.enabled = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "HealthBar", true, function(a)
+                    getgenv().esp.BarLayout.health.enabled = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "LowerHealthColor", Color3.fromRGB(255, 255, 255), 0, function(a)
+                    getgenv().esp.BarLayout.health.color_empty = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "HigherHealthColor", Color3.fromRGB(255, 102, 204), 0, function(a)
+                    getgenv().esp.BarLayout.health.color_full = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "Armor", true, function(a)
+                    getgenv().esp.TextLayout.armor.enabled = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "ArmorBar", true, function(a)
+                    getgenv().esp.BarLayout.armor.enabled = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "LowerArmorColor", Color3.fromRGB(255, 102, 204), 0, function(a)
+                    getgenv().esp.BarLayout.armor.color_empty = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "HigherArmorColor", Color3.fromRGB(255, 102, 204), 0, function(a)
+                    getgenv().esp.BarLayout.armor.color_full = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "Distance", true, function(a)
+                    getgenv().esp.TextLayout.distance.enabled = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "Tool", true, function(a)
+                    getgenv().esp.TextLayout.tool.enabled = a
+                end)
+                Menu.CheckBox("Visuals", "ESP", "Skeletons", false, function(a)
+                    getgenv().esp.SkeletonEnabled = a
+                end)
+
+                Menu.CheckBox("Visuals", "ESP", "Chams", false, function(a)
+                    getgenv().esp.ChamsEnabled = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "ChamsInnerColor", Color3.fromRGB(255, 102, 204), 0, function(a)
+                    getgenv().esp.ChamsInnerColor = a
+                end)
+                Menu.ColorPicker("Visuals", "ESP", "ChamsOuterColor", Color3.fromRGB(255, 255, 255), 0, function(a)
+                    getgenv().esp.ChamsOuterColor = a
+                end)
+            end
+  
+            local Section6 = Menu.Container("Visuals", "World Customization", "Left") do
+                Menu.CheckBox("Visuals", "World Customization", "Enabled", false, function(self)
+                    Settings.Visuals.World_Customization.Enabled = self
+                end)
+                Menu.ColorPicker("Visuals", "World Customization", "World Customization", MainColor, 0, function(self)
+                    task.spawn(function()
+                        while task.wait() do
+                            if Settings.Visuals.World_Customization.Enabled then
+                                Lighting.ColorCorrection.TintColor = self
+                            else
+                                Lighting.ColorCorrection.TintColor = Color3.fromRGB(255, 255, 255)
+                            end
+                        end
+                    end)
+                end)
+
+                Menu.CheckBox("Visuals", "World Customization", "UI", false, function(self)
+                    Settings.Visuals.World_Customization.Bars = self
+                end)
+                Menu.ColorPicker("Visuals", "World Customization", "World Customization", MainColor, 0, function(self)
+                    Settings.Visuals.World_Customization.BarsColor = self
+                end)
+            end
+  
+            local Section7 = Menu.Container("Visuals", "Crosshair", "Right") do
+              Menu.CheckBox("Visuals", "Crosshair", "Enabled", false, function(a)
+                  getgenv().crosshair.enabled = a
+              end)
+              Menu.ColorPicker("Visuals", "Crosshair", "Color", MainColor, 0, function(a)
+                  getgenv().crosshair.color = a
+              end)
+              Menu.ComboBox("Visuals", "Crosshair", "Position", "mouse", {"mouse", "center"}, function(a)
+                  getgenv().crosshair.mode = a
+              end)
+  
+              Menu.Slider('Visuals', 'Crosshair', 'Width', 1, 5, 2.5, '', 1, function(self)
+                  getgenv().crosshair.width = self
+              end)
+              Menu.Slider('Visuals', 'Crosshair', 'Length', 1, 50, 10, '', 0, function(self)
+                  getgenv().crosshair.length = self
+              end)
+              Menu.Slider('Visuals', 'Crosshair', 'Radius', 0, 20, 11, '', 1, function(self)
+                  getgenv().crosshair.radius = self
+              end)
+  
+              Menu.CheckBox('Visuals', 'Crosshair', 'Spin', getgenv().crosshair.spin, function(self)
+                  getgenv().crosshair.spin = self
+              end)
+              Menu.Slider('Visuals', 'Crosshair', 'Spin Speed', 1, 340, 150, '', 0, function(self)
+                  getgenv().crosshair.spin_speed = self
+              end)
+  
+              Menu.CheckBox('Visuals', 'Crosshair', 'Resize', getgenv().crosshair.resize, function(self)
+                  getgenv().crosshair.resize = self
+              end)
+              Menu.Slider('Visuals', 'Crosshair', 'Resize Speed',... (65 KB left)

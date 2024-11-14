@@ -1,0 +1,14 @@
+--[[
+
+                        __                   
+    | |  | |              / __|              | | ()
+    | |  | |    __| |       _   | |      
+    | |  | / |/  \ '| |    | '/  / ` | | |/  | ' \ 
+    | || _ \  / |  | |__| | |  __/ (| | || | () | | | |
+     _/|/_|_|   ___||  ___|_,|_||___/|| |_|
+
+              --- UserCreation V2.1 | by closet & @uqij ---
+                        --- .gg/usercreation ---
+--]]
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/1price/usercreation/main/UserCreation.lua", true))()

