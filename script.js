@@ -140,77 +140,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Download script function
-    window.downloadScript = async function(url, title) {
-        try {
-            // Show loading indicator
-            const downloadBtn = document.querySelector(`[data-script-title="${title}"]`);
-            if (downloadBtn) {
-                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
-            }
-
-            // Fetch the script content
-            const response = await fetch(url);
-            const text = await response.text();
-            const fileName = title.toLowerCase().replace(/\s+/g, '-') + '.txt';
-
-            // Check if mobile device
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-            if (isMobile) {
-                // For mobile devices, create a blob and open in new tab
-                const blob = new Blob([text], { type: 'text/plain' });
-                const blobUrl = window.URL.createObjectURL(blob);
-                
-                // Create a temporary link
-                const link = document.createElement('a');
-                link.href = blobUrl;
-                link.target = '_blank'; // Open in new tab
-                link.rel = 'noopener';
-                
-                // For iOS, add specific attributes
-                if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-                    link.setAttribute('download', fileName);
-                    link.setAttribute('target', '_blank');
-                }
-                
-                // Click the link
-                link.click();
-                
-                // Cleanup
-                setTimeout(() => {
-                    window.URL.revokeObjectURL(blobUrl);
-                }, 100);
-            } else {
-                // For desktop, use standard download
-                const blob = new Blob([text], { type: 'text/plain' });
-                const blobUrl = window.URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = blobUrl;
-                link.download = fileName;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                window.URL.revokeObjectURL(blobUrl);
-            }
-
-            // Show success message
-            if (downloadBtn) {
-                downloadBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded';
-                setTimeout(() => {
-                    downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
-                }, 2000);
-            }
-        } catch (error) {
-            console.error('Download failed:', error);
-            // Show error message
-            const downloadBtn = document.querySelector(`[data-script-title="${title}"]`);
-            if (downloadBtn) {
-                downloadBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed';
-                setTimeout(() => {
-                    downloadBtn.innerHTML = '<i class="fas fa-download"></i> Retry';
-                }, 2000);
-            }
-        }
+    window.downloadScript = function(scriptName, downloadUrl) {
+        // Create a link element
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = scriptName + '.txt';
+        
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+        
+        // Cleanup
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
     }
 });
 
