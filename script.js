@@ -153,16 +153,45 @@ document.addEventListener('DOMContentLoaded', function() {
             const text = await response.text();
             const fileName = title.toLowerCase().replace(/\s+/g, '-') + '.txt';
 
-            // Create blob and download
-            const blob = new Blob([text], { type: 'text/plain' });
-            const blobUrl = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = blobUrl;
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(blobUrl);
+            // Check if mobile device
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // For mobile devices, create a blob and open in new tab
+                const blob = new Blob([text], { type: 'text/plain' });
+                const blobUrl = window.URL.createObjectURL(blob);
+                
+                // Create a temporary link
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.target = '_blank'; // Open in new tab
+                link.rel = 'noopener';
+                
+                // For iOS, add specific attributes
+                if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                    link.setAttribute('download', fileName);
+                    link.setAttribute('target', '_blank');
+                }
+                
+                // Click the link
+                link.click();
+                
+                // Cleanup
+                setTimeout(() => {
+                    window.URL.revokeObjectURL(blobUrl);
+                }, 100);
+            } else {
+                // For desktop, use standard download
+                const blob = new Blob([text], { type: 'text/plain' });
+                const blobUrl = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(blobUrl);
+            }
 
             // Show success message
             if (downloadBtn) {
